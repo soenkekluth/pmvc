@@ -38,6 +38,7 @@
 import Notifier from '../observer/Notifier';
 
 export default class Mediator extends Notifier {
+
   constructor(mediatorName, viewComponent) {
     super();
     this.mediatorName = mediatorName || Mediator.NAME; // this.constructor.NAME;
@@ -80,6 +81,10 @@ export default class Mediator extends Notifier {
     this.viewComponent = viewComponent;
   }
 
+  set view(viewComponent) {
+    this.viewComponent = viewComponent;
+  }
+
   /**
    * Get the Mediators view component.
    *
@@ -101,6 +106,11 @@ export default class Mediator extends Notifier {
    *  The view component
    */
   getViewComponent() {
+    return this.viewComponent;
+  }
+
+
+  get view() {
     return this.viewComponent;
   }
 
@@ -134,14 +144,12 @@ export default class Mediator extends Notifier {
    * @return {void}
    */
   onRegister() {
-    return;
   }
 
   /**
    * Called by the View when the Mediator is removed
    */
   onRemove() {
-    return;
   }
 
 

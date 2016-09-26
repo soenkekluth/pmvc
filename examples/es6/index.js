@@ -54,7 +54,7 @@ class Application {
  */
 
 class ApplicationFacade extends Facade {
-  static NAME = "ApplicationFacade";
+  static NAME = 'ApplicationFacade';
 
   constructor(key) {
     super(key);
@@ -87,7 +87,6 @@ class ApplicationFacade extends Facade {
 
 
   initializeController() {
-    console.log('initializeController')
     super.initializeController();
     this.registerCommand(NotificationNames.STARTUP, StartupCommand);
     this.registerCommand(NotificationNames.TEST, TestCommand);
@@ -102,14 +101,14 @@ class ApplicationFacade extends Facade {
  */
 
 class ApplicationProxy extends Proxy {
-  static NAME = "ApplicationProxy";
+  static NAME = 'ApplicationProxy';
 
   constructor(data) {
     super(ApplicationProxy.NAME, data);
   }
 
   onRegister() {
-
+    console.log('ApplicationProxy registered');
   }
 
   onRemove() {
@@ -130,12 +129,20 @@ class ApplicationProxy extends Proxy {
 
 class ApplicationView {
 
+  show(){
+    console.log('ApplicationView show()');
+  }
+
+  hide(){
+
+  }
+
 }
 
 
 
 class ApplicationMediator extends Mediator {
-  static NAME = "ApplicationMediator";
+  static NAME = 'ApplicationMediator';
 
 
   constructor(mediatorName, viewComponent) {
@@ -145,6 +152,7 @@ class ApplicationMediator extends Mediator {
 
   onRegister() {
     console.log('ApplicationMediator registered');
+    this.view.show();
   }
 
   onRemove() {
@@ -163,8 +171,8 @@ class ApplicationMediator extends Mediator {
 
 class ModelPrepCommand extends SimpleCommand {
   execute(note) {
-    console.log(note);
-    var app = Application(note.getBody());
+    console.log('ModelPrepCommand exexute()');
+    var app = note.getBody();
     var appProxy = new ApplicationProxy(app.data);
     this.facade.registerProxy(appProxy);
   }
@@ -174,7 +182,7 @@ class ModelPrepCommand extends SimpleCommand {
 class ViewPrepCommand extends SimpleCommand {
 
   execute(note) {
-    console.log(note);
+    console.log('ViewPrepCommand exexute()');
     var appView = new ApplicationView();
     var appMediator = new ApplicationMediator(ApplicationMediator.NAME, appView);
     this.facade.registerMediator(appMediator);
@@ -193,7 +201,7 @@ class StartupCommand extends MacroCommand {
 
 
   execute(note) {
-    console.log(note);
+    console.log('StartupCommand exexute()');
     super.execute(note);
     this.facade.removeCommand(NotificationNames.STARTUP);
     this.sendNotification(NotificationNames.STARTUP_COMPLETE);
@@ -204,16 +212,12 @@ class StartupCommand extends MacroCommand {
 
 class TestCommand extends SimpleCommand {
   execute(note) {
-    console.log(note);
-    this.commandComplete();
+    console.log('TestCommand exexute()');
   }
 }
 
 
 
 
-
-
-
-const app = new Application({});
+const app = new Application({key:'value'});
 app.start();

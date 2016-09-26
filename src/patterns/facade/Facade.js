@@ -19,7 +19,7 @@
 
 import Model from '../../core/Model';
 import View from '../../core/View';
-import Notification from '../../patterns/observer/Notification';
+import Notifikation from '../../patterns/observer/Notification';
 import Controller from '../../core/Controller';
 
 export default class Facade {
@@ -64,8 +64,8 @@ export default class Facade {
      */
     this.multitonKey = null;
 
-    this.initializeNotifier(key);
     Facade.instanceMap[key] = this;
+    this.initializeNotifier(key);
     this.initializeFacade();
   }
 
@@ -104,7 +104,7 @@ export default class Facade {
     }
 
     if (!Facade.instanceMap[key]) {
-      Facade.instanceMap[key] = new Facade(key);
+      return new Facade(key);
     }
 
     return Facade.instanceMap[key];
@@ -321,7 +321,7 @@ export default class Facade {
    */
   retrieveMediator(mediatorName) {
     return this.view.retrieveMediator(mediatorName);
-  };
+  }
 
   /**
    * Remove a Mediator from the View.
@@ -368,7 +368,7 @@ export default class Facade {
    * @return {void}
    */
   sendNotification(notificationName, body, type) {
-    var n = new Notification(notificationName, body, type);
+    var n = new Notifikation(notificationName, body, type);
     this.notifyObservers(n);
   }
 
@@ -416,7 +416,7 @@ export default class Facade {
    */
   static hasCore(key) {
     return !!Facade.instanceMap[key];
-  };
+  }
 
   /**
    * Remove a *Core*
@@ -437,7 +437,7 @@ export default class Facade {
     View.removeView(key);
     Controller.removeController(key);
     delete Facade.instanceMap[key];
-  };
+  }
 
 
 

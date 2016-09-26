@@ -1,4 +1,12 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:true});function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function")}}/**
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+/**
  * @author PureMVC JS Native Port by David Foley, Frédéric Saunier, & Alain Duchesneau
  * @author Copyright(c) 2006-2012 Futurescale, Inc., Some rights reserved.
  *
@@ -38,30 +46,90 @@
  *  The Notification body
  * @param {Object} [type]
  *  The Notification type
- */var Notification=function(){function Notification(name,body,type){_classCallCheck(this,Notification);this.name=name;this.body=body;this.type=type}/**
+ */
+var Notification = function () {
+  function Notification(name, body, type) {
+    _classCallCheck(this, Notification);
+
+    this.name = name;
+    this.body = body;
+    this.type = type;
+  }
+
+  /**
    * Get the name of the Notification instance
    *
    * @return {string}
    *  The name of the Notification instance
-   */Notification.prototype.getName=function getName(){return this.name};/**
+   */
+
+
+  Notification.prototype.getName = function getName() {
+    return this.name;
+  };
+
+  /**
    * Set this Notifications body.
    * @param {Object} body
    * @return {void}
-   */Notification.prototype.setBody=function setBody(body){this.body=body};/**
+   */
+
+
+  Notification.prototype.setBody = function setBody(body) {
+    this.body = body;
+  };
+
+  /**
    * Get the Notification body.
    *
    * @return {Object}
-   */Notification.prototype.getBody=function getBody(){return this.body};/**
+   */
+
+
+  Notification.prototype.getBody = function getBody() {
+    return this.body;
+  };
+
+  /**
    * Set the type of the Notification instance.
    *
    * @param {Object} type
    * @return {void}
-   */Notification.prototype.setType=function setType(type){this.type=type};/**
+   */
+
+
+  Notification.prototype.setType = function setType(type) {
+    this.type = type;
+  };
+
+  /**
    * Get the type of the Notification instance.
    *
    * @return {Object}
-   */Notification.prototype.getType=function getType(){return this.type};/**
+   */
+
+
+  Notification.prototype.getType = function getType() {
+    return this.type;
+  };
+
+  /**
    * Get a string representation of the Notification instance
    *
    * @return {string}
-   */Notification.prototype.toString=function toString(){var msg="Notification Name: "+this.getName();msg+="\nBody:"+(this.body==null?"null":this.body.toString());msg+="\nType:"+(this.type==null?"null":this.type);return msg};return Notification}();Notification.test="test";exports.default=Notification;module.exports=exports["default"];
+   */
+
+
+  Notification.prototype.toString = function toString() {
+    var msg = "Notification Name: " + this.getName();
+    msg += "\nBody:" + (this.body == null ? "null" : this.body.toString());
+    msg += "\nType:" + (this.type == null ? "null" : this.type);
+    return msg;
+  };
+
+  return Notification;
+}();
+
+Notification.test = 'test';
+exports.default = Notification;
+module.exports = exports["default"];

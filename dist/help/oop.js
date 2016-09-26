@@ -1,17 +1,26 @@
-'use strict';/*
+'use strict';
+
+/*
  * @author PureMVC JS Native Port by David Foley, Frédéric Saunier, & Alain Duchesneau 
  * @author Copyright(c) 2006-2012 Futurescale, Inc., Some rights reserved.
  * 
  * @hide
  * A an internal helper class used to assist classlet implementation. This
  * class is not accessible by client code.
- */var OopHelp={/*
+ */
+var OopHelp = {
+    /*
      * @private
      * A reference to the global scope. We use this rather than window
      * in order to support both browser based and non browser baed 
      * JavaScript interpreters.
      * @type {Object}
-     */global:function(){return this}()/*
+     */
+    global: function () {
+        return this;
+    }()
+
+    /*
      * @private
      * Extend one Function's prototype by another, emulating classic
      * inheritance.
@@ -25,7 +34,21 @@
      * @return {Function}
      * 
      *  A reference to the extended Function (subclass)
-     */,extend:function extend(child,parent){if('function'!==typeof child)throw new TypeError('#extend- child should be Function');if('function'!==typeof parent)throw new TypeError('#extend- parent should be Function');if(parent===child)return;var Transitive=new Function;Transitive.prototype=parent.prototype;child.prototype=new Transitive;return child.prototype.constructor=child}/*
+     */
+    , extend: function extend(child, parent) {
+        if ('function' !== typeof child) throw new TypeError('#extend- child should be Function');
+
+        if ('function' !== typeof parent) throw new TypeError('#extend- parent should be Function');
+
+        if (parent === child) return;
+
+        var Transitive = new Function();
+        Transitive.prototype = parent.prototype;
+        child.prototype = new Transitive();
+        return child.prototype.constructor = child;
+    }
+
+    /*
      * @private
      * Decoarate one object with the properties of another. 
      * 
@@ -40,7 +63,17 @@
      * 
      * @return {Object}
      *  THe decorated object (first argument)
-     */,decorate:function decorate(object,traits){for(var accessor in traits){object[accessor]=traits[accessor]}return object}};/**
+     */
+    , decorate: function decorate(object, traits) {
+        for (var accessor in traits) {
+            object[accessor] = traits[accessor];
+        }
+
+        return object;
+    }
+};
+
+/**
  * @member puremvc
  * 
  * Declare a namespace and optionally make an Object the referent
@@ -127,7 +160,27 @@
  * @return {Object}
  * 
  *  A reference to the last node of the Object hierarchy created.
- */function declare(qualifiedName,object,scope){var nodes=qualifiedName.split('.'),node=scope||OopHelp.global,lastNode,newNode,nodeName;for(var i=0,n=nodes.length;i<n;i++){lastNode=node;nodeName=nodes[i];node=null==node[nodeName]?node[nodeName]={}:node[nodeName]}if(null==object)return node;return lastNode[nodeName]=object};/**
+ */
+function declare(qualifiedName, object, scope) {
+    var nodes = qualifiedName.split('.'),
+        node = scope || OopHelp.global,
+        lastNode,
+        newNode,
+        nodeName;
+
+    for (var i = 0, n = nodes.length; i < n; i++) {
+        lastNode = node;
+        nodeName = nodes[i];
+
+        node = null == node[nodeName] ? node[nodeName] = {} : node[nodeName];
+    }
+
+    if (null == object) return node;
+
+    return lastNode[nodeName] = object;
+};
+
+/**
  * @member puremvc
  * 
  * Define a new classlet. Current editions of JavaScript do not have classes,
@@ -224,8 +277,63 @@
  * 
  * @return {Function}
  *  A reference to the classlets constructor
- */function define(classInfo,traits,staticTraits){if(!classInfo){classInfo={}}var className=classInfo.name,classParent=classInfo.parent,doExtend='function'===typeof classParent,classConstructor,classScope=classInfo.scope||null,prototype;if('parent'in classInfo&&!doExtend){throw new TypeError('Class parent must be Function')}if(classInfo.hasOwnProperty('constructor')){classConstructor=classInfo.constructor;if('function'!==typeof classConstructor){throw new TypeError('Class constructor must be Function')}}else// there is no constructor, create one
-{if(doExtend)// ensure to call the super constructor
-{classConstructor=function classConstructor(){classParent.apply(this,arguments)}}else// just create a Function
-{classConstructor=new Function}}if(doExtend){OopHelp.extend(classConstructor,classParent)}if(traits){prototype=classConstructor.prototype;OopHelp.decorate(prototype,traits);// reassign constructor 
-prototype.constructor=classConstructor}if(staticTraits){OopHelp.decorate(classConstructor,staticTraits)}if(className){if('string'!==typeof className){throw new TypeError('Class name must be primitive string')}declare(className,classConstructor,classScope)}return classConstructor};
+ */
+function define(classInfo, traits, staticTraits) {
+    if (!classInfo) {
+        classInfo = {};
+    }
+
+    var className = classInfo.name,
+        classParent = classInfo.parent,
+        doExtend = 'function' === typeof classParent,
+        classConstructor,
+        classScope = classInfo.scope || null,
+        prototype;
+
+    if ('parent' in classInfo && !doExtend) {
+        throw new TypeError('Class parent must be Function');
+    }
+
+    if (classInfo.hasOwnProperty('constructor')) {
+        classConstructor = classInfo.constructor;
+        if ('function' !== typeof classConstructor) {
+            throw new TypeError('Class constructor must be Function');
+        }
+    } else // there is no constructor, create one
+        {
+            if (doExtend) // ensure to call the super constructor
+                {
+                    classConstructor = function classConstructor() {
+                        classParent.apply(this, arguments);
+                    };
+                } else // just create a Function
+                {
+                    classConstructor = new Function();
+                }
+        }
+
+    if (doExtend) {
+        OopHelp.extend(classConstructor, classParent);
+    }
+
+    if (traits) {
+        prototype = classConstructor.prototype;
+        OopHelp.decorate(prototype, traits);
+        // reassign constructor 
+        prototype.constructor = classConstructor;
+    }
+
+    if (staticTraits) {
+        OopHelp.decorate(classConstructor, staticTraits);
+    }
+
+    if (className) {
+        if ('string' !== typeof className) {
+            throw new TypeError('Class name must be primitive string');
+        }
+
+        declare(className, classConstructor, classScope);
+    }
+
+    return classConstructor;
+};

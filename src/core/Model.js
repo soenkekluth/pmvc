@@ -95,7 +95,7 @@ export default class Model {
     }
 
     return Model.instanceMap[key];
-  };
+  }
 
   /**
    * Register a Proxy with the Model
@@ -167,7 +167,7 @@ export default class Model {
    * @static
    * @type Array
    */
-  static instanceMap = {};
+  static instanceMap = {}
 
 
   /**
@@ -177,6 +177,6 @@ export default class Model {
    * @static
    * @type {string}
    */
-  static MULTITON_MSG = "Model instance for this Multiton key already constructed!";
+  static MULTITON_MSG = "Model instance for this Multiton key already constructed!"
 
 }

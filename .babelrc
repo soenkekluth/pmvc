@@ -9,7 +9,35 @@
 
       "plugins": [
         "transform-class-properties",
+        ["transform-es2015-classes", {
+                  "loose": true
+                }],
+        "transform-class-constructor-call",
         "transform-decorators-legacy",
+        "add-module-exports"
+      ]
+    },
+
+
+    "example": {
+
+      "presets": [
+        "es2015",
+      ],
+
+      "minified": false,
+      "comments": false,
+
+      "plugins": [
+        "transform-class-properties",
+        "transform-class-constructor-call",
+        "transform-decorators-legacy",
+         [
+          "transform-es2015-classes", {
+            "loose": true
+          }
+        ],
+        "transform-proto-to-assign",
         "add-module-exports"
       ]
     },
@@ -20,7 +48,7 @@
         "es2015",
       ],
 
-      "minified": true,
+      "minified": false,
       "comments": false,
 
       "plugins": [

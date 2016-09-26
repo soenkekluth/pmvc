@@ -7,6 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch-js": "NODE_ENV=development webpack -wd --config ./webpack.dev.js",
     "build": "NODE_ENV=production webpack -p --config ./webpack.prod.js",
+    "build-example": "BABEL_ENV=example babel examples/es6 -d examples/es5",
     "dist": "npm run build && npm run build-lib",
     "start-old": "npm run build && run-p watch-js devserver",
     "start": "npm run build && run-s watch-js",

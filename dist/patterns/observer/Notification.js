@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -125,9 +125,9 @@ var Notification = function () {
 
 
   Notification.prototype.toString = function toString() {
-    var msg = "Notification Name: " + this.getName();
-    msg += "\nBody:" + (this.body === null ? "null" : this.body.toString());
-    msg += "\nType:" + (this.type === null ? "null" : this.type);
+    var msg = 'Notification Name: ' + this.getName();
+    msg += '\nBody:' + (this.body === null ? 'null' : this.body.toString());
+    msg += '\nType:' + (this.type === null ? 'null' : this.type);
     return msg;
   };
 
@@ -135,4 +135,4 @@ var Notification = function () {
 }();
 
 exports.default = Notification;
-module.exports = exports["default"];
+module.exports = exports['default'];

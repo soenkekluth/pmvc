@@ -15,59 +15,61 @@ var _Observer2 = _interopRequireDefault(_Observer);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } } /**
-                                                                                                                                                           * @author PureMVC JS Native Port by David Foley, Frédéric Saunier, & Alain Duchesneau
-                                                                                                                                                           * @author Copyright(c) 2006-2012 Futurescale, Inc., Some rights reserved.
-                                                                                                                                                           *
-                                                                                                                                                           * @class Controller
-                                                                                                                                                           *
-                                                                                                                                                           * In PureMVC, the Controller class follows the 'Command and Controller'
-                                                                                                                                                           * strategy, and assumes these responsibilities:
-                                                                                                                                                           *
-                                                                                                                                                           * - Remembering which
-                                                                                                                                                           * {@link SimpleCommand SimpleCommand}s
-                                                                                                                                                           * or
-                                                                                                                                                           * {@link MacroCommand MacroCommand}s
-                                                                                                                                                           * are intended to handle which
-                                                                                                                                                           * {@link Notification Notification}s
-                                                                                                                                                           * - Registering itself as an
-                                                                                                                                                           * {@link Observer Observer} with
-                                                                                                                                                           * the {@link View View} for each
-                                                                                                                                                           * {@link Notification Notification}
-                                                                                                                                                           * that it has an
-                                                                                                                                                           * {@link SimpleCommand SimpleCommand}
-                                                                                                                                                           * or {@link MacroCommand MacroCommand}
-                                                                                                                                                           * mapping for.
-                                                                                                                                                           * - Creating a new instance of the proper
-                                                                                                                                                           * {@link SimpleCommand SimpleCommand}s
-                                                                                                                                                           * or
-                                                                                                                                                           * {@link MacroCommand MacroCommand}s
-                                                                                                                                                           * to handle a given
-                                                                                                                                                           * {@link Notification Notification}
-                                                                                                                                                           * when notified by the
-                                                                                                                                                           * {@link View View}.
-                                                                                                                                                           * - Calling the command's execute method, passing in the
-                                                                                                                                                           * {@link Notification Notification}.
-                                                                                                                                                           *
-                                                                                                                                                           * Your application must register
-                                                                                                                                                           * {@link SimpleCommand SimpleCommand}s
-                                                                                                                                                           * or {@link MacroCommand MacroCommand}s
-                                                                                                                                                           * with the Controller.
-                                                                                                                                                           *
-                                                                                                                                                           * The simplest way is to subclass
-                                                                                                                                                           * {@link Facade Facade},
-                                                                                                                                                           * and use its
-                                                                                                                                                           * {@link Facade#initializeController initializeController}
-                                                                                                                                                           * method to add your registrations.
-                                                                                                                                                           *
-                                                                                                                                                           * @constructor
-                                                                                                                                                           * This Controller implementation is a Multiton, so you should not call the
-                                                                                                                                                           * constructor directly, but instead call the static #getInstance factory method,
-                                                                                                                                                           * passing the unique key for this instance to it.
-                                                                                                                                                           * @param {string} key
-                                                                                                                                                           * @throws {Error}
-                                                                                                                                                           *  If instance for this Multiton key has already been constructed
-                                                                                                                                                           */
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+/**
+ * @author PureMVC JS Native Port by David Foley, Frédéric Saunier, & Alain Duchesneau
+ * @author Copyright(c) 2006-2012 Futurescale, Inc., Some rights reserved.
+ *
+ * @class Controller
+ *
+ * In PureMVC, the Controller class follows the 'Command and Controller'
+ * strategy, and assumes these responsibilities:
+ *
+ * - Remembering which
+ * {@link SimpleCommand SimpleCommand}s
+ * or
+ * {@link MacroCommand MacroCommand}s
+ * are intended to handle which
+ * {@link Notification Notification}s
+ * - Registering itself as an
+ * {@link Observer Observer} with
+ * the {@link View View} for each
+ * {@link Notification Notification}
+ * that it has an
+ * {@link SimpleCommand SimpleCommand}
+ * or {@link MacroCommand MacroCommand}
+ * mapping for.
+ * - Creating a new instance of the proper
+ * {@link SimpleCommand SimpleCommand}s
+ * or
+ * {@link MacroCommand MacroCommand}s
+ * to handle a given
+ * {@link Notification Notification}
+ * when notified by the
+ * {@link View View}.
+ * - Calling the command's execute method, passing in the
+ * {@link Notification Notification}.
+ *
+ * Your application must register
+ * {@link SimpleCommand SimpleCommand}s
+ * or {@link MacroCommand MacroCommand}s
+ * with the Controller.
+ *
+ * The simplest way is to subclass
+ * {@link Facade Facade},
+ * and use its
+ * {@link Facade#initializeController initializeController}
+ * method to add your registrations.
+ *
+ * @constructor
+ * This Controller implementation is a Multiton, so you should not call the
+ * constructor directly, but instead call the static #getInstance factory method,
+ * passing the unique key for this instance to it.
+ * @param {string} key
+ * @throws {Error}
+ *  If instance for this Multiton key has already been constructed
+ */
 
 var Controller = function () {
 
@@ -93,7 +95,6 @@ var Controller = function () {
     this.view = null;
     this.multitonKey = null;
     this.commandMap = {};
-
 
     if (Controller.instanceMap[key]) {
       throw new Error(Controller.MULTITON_MSG);
@@ -195,16 +196,15 @@ var Controller = function () {
 
 
   Controller.prototype.executeCommand = function executeCommand(note) {
-
     if (!note) {
       return;
     }
-    var commandClassRef = this.commandMap[note.getName()];
-    if (!commandClassRef) {
+    var CommandClassRef = this.commandMap[note.getName()];
+    if (!CommandClassRef) {
       return;
     }
 
-    var commandInstance = new commandClassRef();
+    var commandInstance = new CommandClassRef();
     commandInstance.initializeNotifier(this.multitonKey);
     commandInstance.execute(note);
   };
@@ -221,18 +221,18 @@ var Controller = function () {
    *
    * @param {string} notificationName
    *  the name of the Notification
-   * @param {Function} commandClassRef
+   * @param {Function} CommandClassRef
    *  a command constructor
    * @return {void}
    */
 
 
-  Controller.prototype.registerCommand = function registerCommand(notificationName, commandClassRef) {
+  Controller.prototype.registerCommand = function registerCommand(notificationName, CommandClassRef) {
     if (!this.commandMap[notificationName]) {
       this.view.registerObserver(notificationName, new _Observer2.default(this.executeCommand, this));
     }
 
-    this.commandMap[notificationName] = commandClassRef;
+    this.commandMap[notificationName] = CommandClassRef;
   };
 
   /**
@@ -284,6 +284,6 @@ var Controller = function () {
 }();
 
 Controller.instanceMap = {};
-Controller.MULTITON_MSG = "controller key for this Multiton key already constructed";
+Controller.MULTITON_MSG = 'controller key for this Multiton key already constructed';
 exports.default = Controller;
 module.exports = exports['default'];

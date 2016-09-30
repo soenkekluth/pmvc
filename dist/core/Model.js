@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", {
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-/*
+/**
  * @author PureMVC JS Native Port by David Foley, Frédéric Saunier, & Alain Duchesneau
  * @author Copyright(c) 2006-2012 Futurescale, Inc., Some rights reserved.
  *
@@ -56,7 +56,6 @@ var Model = function () {
 
     this.proxyMap = {};
     this.multitonKey = null;
-
 
     if (Model.instanceMap[key]) {
       throw new Error(Model.MULTITON_MSG);
@@ -214,6 +213,6 @@ var Model = function () {
 }();
 
 Model.instanceMap = {};
-Model.MULTITON_MSG = "Model instance for this Multiton key already constructed!";
+Model.MULTITON_MSG = 'Model instance for this Multiton key already constructed!';
 exports.default = Model;
-module.exports = exports["default"];
+module.exports = exports['default'];

@@ -23,24 +23,26 @@ var _Controller2 = _interopRequireDefault(_Controller);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } } /**
-                                                                                                                                                           * @author PureMVC JS Native Port by David Foley, Frédéric Saunier, & Alain Duchesneau
-                                                                                                                                                           * @author Copyright(c) 2006-2012 Futurescale, Inc., Some rights reserved.
-                                                                                                                                                           *
-                                                                                                                                                           * @class puremvc.Facade
-                                                                                                                                                           * Facade exposes the functionality of the Controller, Model and View
-                                                                                                                                                           * actors to client facing code.
-                                                                                                                                                           *
-                                                                                                                                                           * This Facade implementation is a Multiton, so you should not call the
-                                                                                                                                                           * constructor directly, but instead call the static Factory method,
-                                                                                                                                                           * passing the unique key for this instance to #getInstance
-                                                                                                                                                           *
-                                                                                                                                                           * @constructor
-                                                                                                                                                           * @param {string} key
-                                                                                                                                                           *  The multiton key to use to retrieve the Facade instance.
-                                                                                                                                                           * @throws {Error}
-                                                                                                                                                           *  If an attempt is made to instantiate Facade directly
-                                                                                                                                                           */
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+/**
+ * @author PureMVC JS Native Port by David Foley, Frédéric Saunier, & Alain Duchesneau
+ * @author Copyright(c) 2006-2012 Futurescale, Inc., Some rights reserved.
+ *
+ * @class puremvc.Facade
+ * Facade exposes the functionality of the Controller, Model and View
+ * actors to client facing code.
+ *
+ * This Facade implementation is a Multiton, so you should not call the
+ * constructor directly, but instead call the static Factory method,
+ * passing the unique key for this instance to #getInstance
+ *
+ * @constructor
+ * @param {string} key
+ *  The multiton key to use to retrieve the Facade instance.
+ * @throws {Error}
+ *  If an attempt is made to instantiate Facade directly
+ */
 
 var Facade = function () {
 
@@ -498,7 +500,6 @@ var Facade = function () {
 
   Facade.removeCore = function removeCore(key) {
     if (!Facade.instanceMap[key]) {
-
       return;
     }
 
@@ -531,6 +532,6 @@ var Facade = function () {
 }();
 
 Facade.instanceMap = {};
-Facade.MULTITON_MSG = "Facade instance for this Multiton key already constructed!";
+Facade.MULTITON_MSG = 'Facade instance for this Multiton key already constructed!';
 exports.default = Facade;
 module.exports = exports['default'];

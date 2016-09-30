@@ -50,7 +50,6 @@ var Observer = function () {
     this.notify = null;
     this.context = null;
 
-
     this.setNotifyMethod(notifyMethod);
     this.setNotifyContext(notifyContext);
   }

@@ -1,8 +1,15 @@
-"use strict";
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.default = undefined;
+
+var _Observer = require('../patterns/observer/Observer');
+
+var _Observer2 = _interopRequireDefault(_Observer);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -45,6 +52,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
  * @throws {Error}
  *  if instance for this Multiton key has already been constructed
  */
+
 var View = function () {
 
   /**
@@ -190,17 +198,16 @@ var View = function () {
 
 
   View.prototype.notifyObservers = function notifyObservers(notification) {
-
     if (this.observerMap[notification.getName()]) {
-
       // Get a reference to the observers list for this notification name
       var observerArray = this.observerMap[notification.getName()];
 
       // Copy observers from reference array to working array,
       // since the reference array may change during the notification loop
       var observers = [];
-      var observer;
-      for (var i = 0; i < observerArray.length; i++) {
+      var observer = void 0;
+      var i = void 0;
+      for (i = 0; i < observerArray.length; i++) {
         observer = observerArray[i];
         observers.push(observer);
       }
@@ -297,7 +304,7 @@ var View = function () {
     // register mediator as an observer for each notification
     if (interests.length > 0) {
       // create observer referencing this mediators handleNotification method
-      var observer = new Observer(mediator.handleNotification, mediator);
+      var observer = new _Observer2.default(mediator.handleNotification, mediator);
       for (var i = 0; i < interests.length; i++) {
         this.registerObserver(interests[i], observer);
       }
@@ -370,6 +377,6 @@ var View = function () {
 }();
 
 View.instanceMap = {};
-View.MULTITON_MSG = "View instance for this Multiton key already constructed!";
+View.MULTITON_MSG = 'View instance for this Multiton key already constructed!';
 exports.default = View;
-module.exports = exports["default"];
+module.exports = exports['default'];

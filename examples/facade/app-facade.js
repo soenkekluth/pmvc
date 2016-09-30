@@ -1,7 +1,6 @@
 import { Facade } from '../../src/pmvc';
 import { NotificationNames } from '../constants';
-import StartupCommand, {TestCommand} from '../controller/startup-command';
-
+import StartupCommand, { TestCommand } from '../controller/startup-command';
 
 
 export default class ApplicationFacade extends Facade {

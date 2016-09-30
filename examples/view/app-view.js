@@ -1,11 +1,11 @@
 
 export default class ApplicationView {
 
-  show(){
+  show() {
     console.log('ApplicationView show()');
   }
 
-  hide(){
+  hide() {
 
   }
 

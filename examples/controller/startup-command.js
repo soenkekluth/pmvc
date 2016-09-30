@@ -19,7 +19,6 @@
  }
 
 
-
  export class TestCommand extends SimpleCommand {
    execute(note) {
      console.log('TestCommand execute()');

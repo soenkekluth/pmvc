@@ -1,3 +1,5 @@
+
+
 /**
  * @author PureMVC JS Native Port by David Foley, Frédéric Saunier, & Alain Duchesneau
  * @author Copyright(c) 2006-2012 Futurescale, Inc., Some rights reserved.
@@ -62,7 +64,6 @@ export default class Facade {
   multitonKey = null;
 
 
-
   constructor(key) {
     if (Facade.instanceMap[key]) {
       throw new Error(Facade.MULTITON_MSG);
@@ -103,7 +104,7 @@ export default class Facade {
    * @return {puremvc.Facade}
    */
   static getInstance(key) {
-    if (!key){
+    if (!key) {
       return null;
     }
 
@@ -175,7 +176,7 @@ export default class Facade {
    * @return {void}
    */
   initializeModel() {
-    if (this.model){
+    if (this.model) {
       return;
     }
 
@@ -213,7 +214,7 @@ export default class Facade {
    * @return {void}
    */
   initializeView() {
-    if (this.view){
+    if (this.view) {
       return;
     }
 
@@ -285,7 +286,7 @@ export default class Facade {
    *  The Proxy that was removed from the Model
    */
   removeProxy(proxyName) {
-    var proxy = null;
+    let proxy = null;
     if (this.model) {
       proxy = this.model.removeProxy(proxyName);
     }
@@ -338,7 +339,7 @@ export default class Facade {
    *  The removed Mediator
    */
   removeMediator(mediatorName) {
-    var mediator = null;
+    let mediator = null;
     if (this.view) {
       mediator = this.view.removeMediator(mediatorName);
     }
@@ -374,7 +375,7 @@ export default class Facade {
    * @return {void}
    */
   sendNotification(notificationName, body, type) {
-    var n = new Notifikation(notificationName, body, type);
+    const n = new Notifikation(notificationName, body, type);
     this.notifyObservers(n);
   }
 
@@ -435,7 +436,6 @@ export default class Facade {
    */
   static removeCore(key) {
     if (!Facade.instanceMap[key]) {
-
       return;
     }
 
@@ -444,7 +444,6 @@ export default class Facade {
     Controller.removeController(key);
     delete Facade.instanceMap[key];
   }
-
 
 
   /**
@@ -464,7 +463,7 @@ export default class Facade {
    * @const
    * @static
    */
-  static MULTITON_MSG = "Facade instance for this Multiton key already constructed!";
+  static MULTITON_MSG = 'Facade instance for this Multiton key already constructed!';
 
 
 }

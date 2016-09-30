@@ -1,3 +1,5 @@
+
+
 /**
  * @author PureMVC JS Native Port by David Foley, Frédéric Saunier, & Alain Duchesneau
  * @author Copyright(c) 2006-2012 Futurescale, Inc., Some rights reserved.
@@ -37,6 +39,10 @@
  * @throws {Error}
  *  if instance for this Multiton key has already been constructed
  */
+
+import Observer from '../patterns/observer/Observer';
+
+
 export default class View {
 
 
@@ -50,7 +56,6 @@ export default class View {
   }
 
 
-
   /**
    * @ignore
    * The internal map used to store multiton View instances
@@ -59,7 +64,6 @@ export default class View {
    * @protected
    */
   static instanceMap = {};
-
 
 
   /**
@@ -71,7 +75,7 @@ export default class View {
    * @const
    * @static
    */
-  static MULTITON_MSG = "View instance for this Multiton key already constructed!";
+  static MULTITON_MSG = 'View instance for this Multiton key already constructed!';
 
 
   /**
@@ -180,18 +184,16 @@ export default class View {
    * @return {void}
    */
   notifyObservers(notification) {
-
-
     if (this.observerMap[notification.getName()]) {
-
       // Get a reference to the observers list for this notification name
-      var observerArray = this.observerMap[notification.getName()];
+      const observerArray = this.observerMap[notification.getName()];
 
       // Copy observers from reference array to working array,
       // since the reference array may change during the notification loop
-      var observers = [];
-      var observer;
-      for (var i = 0; i < observerArray.length; i++) {
+      const observers = [];
+      let observer;
+      let i;
+      for (i = 0; i < observerArray.length; i++) {
         observer = observerArray[i];
         observers.push(observer);
       }
@@ -223,7 +225,6 @@ export default class View {
     //   observer = observers[i];
     //   observer.notifyObserver(notification);
     // }
-
   }
 
   /**
@@ -238,8 +239,8 @@ export default class View {
    */
   removeObserver(notificationName, notifyContext) {
     // SIC
-    var observers = this.observerMap[notificationName];
-    for (var i = 0; i < observers.length; i++) {
+    const observers = this.observerMap[notificationName];
+    for (let i = 0; i < observers.length; i++) {
       if (observers[i].compareNotifyContext(notifyContext) === true) {
         observers.splice(i, 1);
         break;
@@ -280,13 +281,13 @@ export default class View {
     this.mediatorMap[mediator.getMediatorName()] = mediator;
 
     // get notification interests if any
-    var interests = mediator.listNotificationInterests();
+    const interests = mediator.listNotificationInterests();
 
     // register mediator as an observer for each notification
     if (interests.length > 0) {
       // create observer referencing this mediators handleNotification method
-      var observer = new Observer(mediator.handleNotification, mediator);
-      for (var i = 0; i < interests.length; i++) {
+      const observer = new Observer(mediator.handleNotification, mediator);
+      for (let i = 0; i < interests.length; i++) {
         this.registerObserver(interests[i], observer);
       }
     }
@@ -317,11 +318,11 @@ export default class View {
    *  The Mediator that was removed from the View
    */
   removeMediator(mediatorName) {
-    var mediator = this.mediatorMap[mediatorName];
+    const mediator = this.mediatorMap[mediatorName];
     if (mediator) {
       // for every notification the mediator is interested in...
-      var interests = mediator.listNotificationInterests();
-      for (var i = 0; i < interests.length; i++) {
+      const interests = mediator.listNotificationInterests();
+      for (let i = 0; i < interests.length; i++) {
         // remove the observer linking the mediator to the notification
         // interest
         this.removeObserver(interests[i], mediator);

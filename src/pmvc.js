@@ -10,7 +10,6 @@ import Notifier from './patterns/observer/Notifier';
 import Observer from './patterns/observer/Observer';
 import Proxy from './patterns/proxy/Proxy';
 
-
 const pmvc = {
   Model,
   View,
@@ -22,7 +21,7 @@ const pmvc = {
   Notification,
   Notifier,
   Observer,
-  Proxy
-}
+  Proxy,
+};
 
 module.exports = pmvc;

@@ -1,3 +1,5 @@
+
+
 /**
  * @author PureMVC JS Native Port by David Foley, Frédéric Saunier, & Alain Duchesneau
  * @author Copyright(c) 2006-2012 Futurescale, Inc., Some rights reserved.
@@ -104,9 +106,9 @@ export default class Notification {
    * @return {string}
    */
   toString() {
-    var msg = "Notification Name: " + this.getName();
-    msg += "\nBody:" + ((this.body === null) ? "null" : this.body.toString());
-    msg += "\nType:" + ((this.type === null) ? "null" : this.type);
+    let msg = `Notification Name: ${this.getName()}`;
+    msg += `\nBody:${(this.body === null) ? 'null' : this.body.toString()}`;
+    msg += `\nType:${(this.type === null) ? 'null' : this.type}`;
     return msg;
   }
 

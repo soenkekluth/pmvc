@@ -1,4 +1,6 @@
-/*
+
+
+/**
  * @author PureMVC JS Native Port by David Foley, Frédéric Saunier, & Alain Duchesneau
  * @author Copyright(c) 2006-2012 Futurescale, Inc., Some rights reserved.
  *
@@ -57,7 +59,6 @@ export default class Model {
 
 
   constructor(key) {
-
     if (Model.instanceMap[key]) {
       throw new Error(Model.MULTITON_MSG);
     }
@@ -150,7 +151,7 @@ export default class Model {
    *  The Proxy that was removed from the Model
    */
   removeProxy(proxyName) {
-    var proxy = this.proxyMap[proxyName];
+    const proxy = this.proxyMap[proxyName];
     if (proxy) {
       delete this.proxyMap[proxyName];
       proxy.onRemove();
@@ -171,7 +172,6 @@ export default class Model {
   }
 
 
-
   /**
    * @ignore
    * The map used by the Model to store multiton instances
@@ -190,6 +190,6 @@ export default class Model {
    * @static
    * @type {string}
    */
-  static MULTITON_MSG = "Model instance for this Multiton key already constructed!";
+  static MULTITON_MSG = 'Model instance for this Multiton key already constructed!';
 
 }

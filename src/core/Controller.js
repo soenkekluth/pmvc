@@ -1,3 +1,5 @@
+
+
 /**
  * @author PureMVC JS Native Port by David Foley, Frédéric Saunier, & Alain Duchesneau
  * @author Copyright(c) 2006-2012 Futurescale, Inc., Some rights reserved.
@@ -67,7 +69,6 @@ export default class Controller {
   static instanceMap = {};
 
 
-
   /**
    * @ignore
    *
@@ -76,7 +77,7 @@ export default class Controller {
    * @protected
    * @type {string}
    */
-  static MULTITON_MSG = "controller key for this Multiton key already constructed";
+  static MULTITON_MSG = 'controller key for this Multiton key already constructed';
 
   /**
    * Local reference to the Controller's View
@@ -104,9 +105,7 @@ export default class Controller {
   commandMap = {};
 
 
-
   constructor(key) {
-
     if (Controller.instanceMap[key]) {
       throw new Error(Controller.MULTITON_MSG);
     }
@@ -160,7 +159,7 @@ export default class Controller {
    *  the Multiton instance of Controller
    */
   static getInstance(key) {
-    if (!key){
+    if (!key) {
       return null;
     }
 
@@ -179,16 +178,15 @@ export default class Controller {
    * @return {void}
    */
   executeCommand(note) {
-
-    if(!note){
+    if (!note) {
       return;
     }
-    var commandClassRef = this.commandMap[note.getName()];
-    if (!commandClassRef){
+    const CommandClassRef = this.commandMap[note.getName()];
+    if (!CommandClassRef) {
       return;
     }
 
-    var commandInstance = new commandClassRef();
+    const commandInstance = new CommandClassRef();
     commandInstance.initializeNotifier(this.multitonKey);
     commandInstance.execute(note);
   }
@@ -205,16 +203,16 @@ export default class Controller {
    *
    * @param {string} notificationName
    *  the name of the Notification
-   * @param {Function} commandClassRef
+   * @param {Function} CommandClassRef
    *  a command constructor
    * @return {void}
    */
-  registerCommand(notificationName, commandClassRef) {
+  registerCommand(notificationName, CommandClassRef) {
     if (!this.commandMap[notificationName]) {
       this.view.registerObserver(notificationName, new Observer(this.executeCommand, this));
     }
 
-    this.commandMap[notificationName] = commandClassRef;
+    this.commandMap[notificationName] = CommandClassRef;
   }
 
   /**

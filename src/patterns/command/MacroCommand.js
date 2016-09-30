@@ -1,3 +1,5 @@
+
+
 /**
  * @author PureMVC JS Native Port by David Foley, Frédéric Saunier, & Alain Duchesneau
  * @author Copyright(c) 2006-2012 Futurescale, Inc., Some rights reserved.
@@ -51,7 +53,6 @@ export default class MacroCommand extends Notifier {
   }
 
 
-
   /**
    * @protected
    * Initialize the MacroCommand.
@@ -97,8 +98,8 @@ export default class MacroCommand extends Notifier {
   execute(note) {
     // SIC- TODO optimize
     while (this.subCommands.length > 0) {
-      var Ref = this.subCommands.shift();
-      var cmd = new Ref;
+      const Ref = this.subCommands.shift();
+      const cmd = new Ref();
       cmd.initializeNotifier(this.multitonKey);
       cmd.execute(note);
     }

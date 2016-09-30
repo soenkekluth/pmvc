@@ -1,3 +1,5 @@
+
+
 /**
  * @author PureMVC JS Native Port by David Foley, Frédéric Saunier, & Alain Duchesneau
  * @author Copyright(c) 2006-2012 Futurescale, Inc., Some rights reserved.
@@ -57,7 +59,7 @@ export default class Mediator extends Notifier {
    *
    * @type {string}
    */
-  static NAME = "Mediator";
+  static NAME = 'Mediator';
 
   /**
    * Get the name of the Mediator

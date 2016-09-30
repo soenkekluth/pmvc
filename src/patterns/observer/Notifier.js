@@ -1,3 +1,5 @@
+
+
 /**
  * @author PureMVC JS Native Port by David Foley, Frédéric Saunier, & Alain Duchesneau
  * @author Copyright(c) 2006-2012 Futurescale, Inc., Some rights reserved.
@@ -59,9 +61,6 @@ export default class Notifier {
    */
   multitonKey = null;
 
-  constructor() {
-
-  }
     /**
      * Create and send a Notification.
      *
@@ -77,13 +76,11 @@ export default class Notifier {
      * @return {void}
      */
   sendNotification(notificationName, body, type) {
-    var facade = this.getFacade();
+    const facade = this.getFacade();
     if (facade) {
       facade.sendNotification(notificationName, body, type);
     }
   }
-
-
 
 
   /**
@@ -127,7 +124,6 @@ export default class Notifier {
   }
 
 
-
   /**
    * @ignore
    * The error message used if the Notifier is not initialized correctly and
@@ -138,6 +134,6 @@ export default class Notifier {
    * @const
    * @type string
    */
-  static MULTITON_MSG = "multitonKey for this Notifier not yet initialized!";
+  static MULTITON_MSG = 'multitonKey for this Notifier not yet initialized!';
 
 }

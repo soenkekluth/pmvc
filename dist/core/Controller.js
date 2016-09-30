@@ -72,26 +72,32 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 var Controller = function () {
 
   /**
-   * Multiton key to Controller instance mappings
+   * The Controller's multiton key
    *
+   * @protected
+   * @type {string}
+   */
+
+
+  /**
+   * @ignore
+   *
+   * Message constants
    * @static
    * @protected
-   * @type {Object}
+   * @type {string}
    */
   function Controller(key) {
     _classCallCheck(this, Controller);
 
+    this.view = null;
+    this.multitonKey = null;
+    this.commandMap = {};
+
+
     if (Controller.instanceMap[key]) {
       throw new Error(Controller.MULTITON_MSG);
     }
-
-    /**
-     * Local reference to the Controller's View
-     *
-     * @protected
-     * @type {View}
-     */
-    this.view = null;
 
     /**
      * The Controller's multiton key
@@ -103,13 +109,6 @@ var Controller = function () {
 
     Controller.instanceMap[this.multitonKey] = this;
 
-    /**
-     * Note name to command constructor mappings
-     *
-     * @protected
-     * @type {Object}
-     */
-    this.commandMap = {};
     this.initializeController();
   }
 
@@ -134,12 +133,27 @@ var Controller = function () {
    */
 
   /**
-   * @ignore
+   * Note name to command constructor mappings
    *
-   * Message constants
+   * @protected
+   * @type {Object}
+   */
+
+
+  /**
+   * Local reference to the Controller's View
+   *
+   * @protected
+   * @type {View}
+   */
+
+
+  /**
+   * Multiton key to Controller instance mappings
+   *
    * @static
    * @protected
-   * @type {string}
+   * @type {Object}
    */
 
 
@@ -181,6 +195,7 @@ var Controller = function () {
 
 
   Controller.prototype.executeCommand = function executeCommand(note) {
+
     if (!note) {
       return;
     }

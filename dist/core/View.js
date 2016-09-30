@@ -76,42 +76,45 @@ var View = function () {
    */
 
 
+  /**
+   * @ignore
+   * The Views internal mapping of mediator names to mediator instances
+   *
+   * @type Array
+   * @protected
+   */
+
+
+  /**
+   * @ignore
+   * The Views internal mapping of Notification names to Observer lists
+   *
+   * @type Array
+   * @protected
+   */
+
+
+  /**
+   * @ignore
+   * The Views internal multiton key.
+   *
+   * @type string
+   * @protected
+   */
+
   function View(key) {
     _classCallCheck(this, View);
+
+    this.mediatorMap = {};
+    this.observerMap = {};
+    this.multitonKey = null;
 
     if (View.instanceMap[key]) {
       throw new Error(View.MULTITON_MSG);
     }
 
-    /**
-     * @ignore
-     * The Views internal mapping of mediator names to mediator instances
-     *
-     * @type Array
-     * @protected
-     */
-    this.mediatorMap = {};
-
-    /**
-     * @ignore
-     * The Views internal mapping of Notification names to Observer lists
-     *
-     * @type Array
-     * @protected
-     */
-    this.observerMap = {};
-
-    /**
-     * @ignore
-     * The Views internal multiton key.
-     *
-     * @type string
-     * @protected
-     */
-
     this.multitonKey = key;
     View.instanceMap[this.multitonKey] = this;
-
     this.initializeView();
   }
 
@@ -127,7 +130,9 @@ var View = function () {
    */
 
 
-  View.prototype.initializeView = function initializeView() {};
+  View.prototype.initializeView = function initializeView() {
+    return this;
+  };
 
   /**
    * View Singleton Factory method.
@@ -167,6 +172,8 @@ var View = function () {
       this.observerMap[notificationName] = [];
     }
     this.observerMap[notificationName].push(observer);
+
+    return this;
   };
 
   /**
@@ -204,6 +211,8 @@ var View = function () {
         observer.notifyObserver(notification);
       }
     }
+
+    return this;
 
     // var observers = this.observerMap[notification.getName()];
     // if (observers && observers.length) {
@@ -250,6 +259,8 @@ var View = function () {
     if (observers.length === 0) {
       delete this.observerMap[notificationName];
     }
+
+    return this;
   };
 
   /**
@@ -273,7 +284,7 @@ var View = function () {
 
   View.prototype.registerMediator = function registerMediator(mediator) {
     if (this.mediatorMap[mediator.getMediatorName()]) {
-      return;
+      return this;
     }
 
     mediator.initializeNotifier(this.multitonKey);
@@ -293,6 +304,8 @@ var View = function () {
     }
 
     mediator.onRegister();
+
+    return this;
   };
 
   /**

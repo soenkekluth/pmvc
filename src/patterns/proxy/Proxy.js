@@ -34,27 +34,30 @@ import Notifier from '../observer/Notifier';
 
 export default class Proxy extends Notifier {
 
+  /**
+   * @ignore
+   * The Proxys name.
+   *
+   * @protected
+   * @type String
+   */
+  proxyName = null;
+
+  /**
+   * @ignore
+   * The Proxy's data object.
+   *
+   * @protected
+   * @type Object
+   */
+  data = null;
+
+
 
   constructor(proxyName, data) {
     super();
-    /**
-     * @ignore
-     * The Proxys name.
-     *
-     * @protected
-     * @type String
-     */
+
     this.proxyName = proxyName || Proxy.NAME;
-
-    /**
-     * @ignore
-     * The Proxy's data object.
-     *
-     * @protected
-     * @type Object
-     */
-    this.data = null;
-
 
     if (data) {
       this.setData(data);

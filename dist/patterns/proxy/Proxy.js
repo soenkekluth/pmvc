@@ -52,34 +52,38 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var Proxy = function (_Notifier) {
   _inherits(Proxy, _Notifier);
 
+  /**
+   * @ignore
+   * The Proxys name.
+   *
+   * @protected
+   * @type String
+   */
   function Proxy(proxyName, data) {
     _classCallCheck(this, Proxy);
 
-    /**
-     * @ignore
-     * The Proxys name.
-     *
-     * @protected
-     * @type String
-     */
     var _this = _possibleConstructorReturn(this, _Notifier.call(this));
 
-    _this.proxyName = proxyName || Proxy.NAME;
-
-    /**
-     * @ignore
-     * The Proxy's data object.
-     *
-     * @protected
-     * @type Object
-     */
+    _this.proxyName = null;
     _this.data = null;
+
+
+    _this.proxyName = proxyName || Proxy.NAME;
 
     if (data) {
       _this.setData(data);
     }
     return _this;
   }
+
+  /**
+   * @ignore
+   * The Proxy's data object.
+   *
+   * @protected
+   * @type Object
+   */
+
 
   /**
    * Get the Proxy's name.

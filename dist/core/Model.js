@@ -43,21 +43,24 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
  *  An error is thrown if this multitons key is already in use by another instance
  */
 var Model = function () {
+
+  /**
+   * @ignore
+   * The map used by the Model to store Proxy instances.
+   *
+   * @protected
+   * @type Array
+   */
   function Model(key) {
     _classCallCheck(this, Model);
+
+    this.proxyMap = {};
+    this.multitonKey = null;
+
 
     if (Model.instanceMap[key]) {
       throw new Error(Model.MULTITON_MSG);
     }
-
-    /**
-     * @ignore
-     * The map used by the Model to store Proxy instances.
-     *
-     * @protected
-     * @type Array
-     */
-    this.proxyMap = {};
 
     /**
      * @ignore
@@ -84,6 +87,15 @@ var Model = function () {
    */
 
 
+  /**
+   * @ignore
+   * The Models multiton key.
+   *
+   * @protected
+   * @type string
+   */
+
+
   Model.prototype.initializeModel = function initializeModel() {};
 
   /**
@@ -103,7 +115,7 @@ var Model = function () {
       return null;
     }
     if (!Model.instanceMap[key]) {
-      Model.instanceMap[key] = new Model(key);
+      return new Model(key);
     }
 
     return Model.instanceMap[key];

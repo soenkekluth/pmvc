@@ -41,26 +41,27 @@ import Facade from '../facade/Facade';
 
 export default class Notifier {
 
+  /**
+   * @protected
+   * A reference to this Notifier's Facade. This reference will not be available
+   * until #initializeNotifier has been called.
+   *
+   * @type {puremvc.Facade}
+   */
+  facade = null;
+
+  /**
+   * @ignore
+   * The Notifiers internal multiton key.
+   *
+   * @protected
+   * @type string
+   */
+  multitonKey = null;
 
   constructor() {
-      /**
-       * @protected
-       * A reference to this Notifier's Facade. This reference will not be available
-       * until #initializeNotifier has been called.
-       *
-       * @type {puremvc.Facade}
-       */
-      this.facade = null;
 
-      /**
-       * @ignore
-       * The Notifiers internal multiton key.
-       *
-       * @protected
-       * @type string
-       */
-      this.multitonKey = null;
-    }
+  }
     /**
      * Create and send a Notification.
      *

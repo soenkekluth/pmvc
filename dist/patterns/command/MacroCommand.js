@@ -58,13 +58,11 @@ var MacroCommand = function (_Notifier) {
   function MacroCommand() {
     _classCallCheck(this, MacroCommand);
 
-    /**
-     * @private
-     * @type {Array.<puremvc.SimpleCommand|puremvc.MacroCommand>}
-     */
     var _this = _possibleConstructorReturn(this, _Notifier.call(this));
 
     _this.subCommands = [];
+
+
     _this.initializeMacroCommand();
     return _this;
   }
@@ -89,6 +87,12 @@ var MacroCommand = function (_Notifier) {
    * Note that *SubCommand*s may be any command implementor,
    * MacroCommands or SimpleCommands are both acceptable.
    * @return {void}
+   */
+
+
+  /**
+   * @private
+   * @type {Array.<puremvc.SimpleCommand|puremvc.MacroCommand>}
    */
 
 
@@ -120,8 +124,8 @@ var MacroCommand = function (_Notifier) {
   MacroCommand.prototype.execute = function execute(note) {
     // SIC- TODO optimize
     while (this.subCommands.length > 0) {
-      var ref = this.subCommands.shift();
-      var cmd = new ref();
+      var Ref = this.subCommands.shift();
+      var cmd = new Ref();
       cmd.initializeNotifier(this.multitonKey);
       cmd.execute(note);
     }

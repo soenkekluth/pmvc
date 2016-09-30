@@ -51,6 +51,10 @@ var Notification = function () {
   function Notification(name, body, type) {
     _classCallCheck(this, Notification);
 
+    this.name = null;
+    this.body = null;
+    this.type = null;
+
     this.name = name;
     this.body = body;
     this.type = type;
@@ -122,14 +126,13 @@ var Notification = function () {
 
   Notification.prototype.toString = function toString() {
     var msg = "Notification Name: " + this.getName();
-    msg += "\nBody:" + (this.body == null ? "null" : this.body.toString());
-    msg += "\nType:" + (this.type == null ? "null" : this.type);
+    msg += "\nBody:" + (this.body === null ? "null" : this.body.toString());
+    msg += "\nType:" + (this.type === null ? "null" : this.type);
     return msg;
   };
 
   return Notification;
 }();
 
-Notification.test = 'test';
 exports.default = Notification;
 module.exports = exports["default"];

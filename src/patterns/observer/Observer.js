@@ -30,21 +30,23 @@
  */
 export default class Observer {
 
-  constructor(notifyMethod, notifyContext) {
-    /**
-     * The Observers callback Function
-     *
-     * @private
-     * @type {Function}
-     */
-    this.notify = null;
+  /**
+   * The Observers callback Function
+   *
+   * @private
+   * @type {Function}
+   */
+  notify = null;
 
-    /**
-     * The Observers callback Object
-     * @private
-     * @type {Object}
-     */
-    this.context = null;
+  /**
+   * The Observers callback Object
+   * @private
+   * @type {Object}
+   */
+  context = null;
+
+
+  constructor(notifyMethod, notifyContext) {
 
     this.setNotifyMethod(notifyMethod);
     this.setNotifyContext(notifyContext);
@@ -103,9 +105,6 @@ export default class Observer {
    */
   notifyObserver(notification) {
     // this.notify.bind(this.context);
-    console.log('notify', this.notify )
-    console.log('context', this.context )
-    console.log('notification', notification )
     this.notify.call(this.context, notification);
     // console.log(notification);
     // this.getNotifyMethod().apply(this.getNotifyContext(), notification);

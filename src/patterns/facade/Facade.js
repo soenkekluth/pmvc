@@ -23,46 +23,50 @@ import Notifikation from '../../patterns/observer/Notification';
 import Controller from '../../core/Controller';
 
 export default class Facade {
+
+
+  /**
+   * @ignore
+   * The Facades corresponding Controller
+   *
+   * @protected
+   * @type puremvc.Controller
+   */
+  controller = null;
+
+  /**
+   * @ignore
+   * The Facades corresponding Model instance
+   *
+   * @protected
+   * @type puremvc.Model
+   */
+  model = null;
+
+  /**
+   * @ignore
+   * The Facades correspnding View instance.
+   *
+   * @protected
+   * @type puremvc.View
+   */
+  view = null;
+
+  /**
+   * @ignore
+   * The Facades multiton key.
+   *
+   * @protected
+   * @type string
+   */
+  multitonKey = null;
+
+
+
   constructor(key) {
     if (Facade.instanceMap[key]) {
       throw new Error(Facade.MULTITON_MSG);
     }
-
-    /**
-     * @ignore
-     * The Facades corresponding Controller
-     *
-     * @protected
-     * @type puremvc.Controller
-     */
-    this.controller = null;
-
-    /**
-     * @ignore
-     * The Facades corresponding Model instance
-     *
-     * @protected
-     * @type puremvc.Model
-     */
-    this.model = null;
-
-    /**
-     * @ignore
-     * The Facades correspnding View instance.
-     *
-     * @protected
-     * @type puremvc.View
-     */
-    this.view = null;
-
-    /**
-     * @ignore
-     * The Facades multiton key.
-     *
-     * @protected
-     * @type string
-     */
-    this.multitonKey = null;
 
     Facade.instanceMap[key] = this;
     this.initializeNotifier(key);
@@ -108,7 +112,7 @@ export default class Facade {
     }
 
     return Facade.instanceMap[key];
-  };
+  }
 
   /**
    * Initialize the {@link puremvc.Controller Controller}.
@@ -171,8 +175,9 @@ export default class Facade {
    * @return {void}
    */
   initializeModel() {
-    if (this.model)
+    if (this.model){
       return;
+    }
 
     this.model = Model.getInstance(this.multitonKey);
   }
@@ -208,8 +213,9 @@ export default class Facade {
    * @return {void}
    */
   initializeView() {
-    if (this.view)
+    if (this.view){
       return;
+    }
 
     this.view = View.getInstance(this.multitonKey);
   }

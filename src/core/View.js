@@ -73,42 +73,46 @@ export default class View {
    */
   static MULTITON_MSG = "View instance for this Multiton key already constructed!";
 
+
+  /**
+   * @ignore
+   * The Views internal mapping of mediator names to mediator instances
+   *
+   * @type Array
+   * @protected
+   */
+  mediatorMap = {};
+
+
+  /**
+   * @ignore
+   * The Views internal mapping of Notification names to Observer lists
+   *
+   * @type Array
+   * @protected
+   */
+  observerMap = {};
+
+
+  /**
+   * @ignore
+   * The Views internal multiton key.
+   *
+   * @type string
+   * @protected
+   */
+
+  multitonKey = null;
+
+
   constructor(key) {
     if (View.instanceMap[key]) {
       throw new Error(View.MULTITON_MSG);
     }
 
 
-    /**
-     * @ignore
-     * The Views internal mapping of mediator names to mediator instances
-     *
-     * @type Array
-     * @protected
-     */
-    this.mediatorMap = {};
-
-    /**
-     * @ignore
-     * The Views internal mapping of Notification names to Observer lists
-     *
-     * @type Array
-     * @protected
-     */
-    this.observerMap = {};
-
-    /**
-     * @ignore
-     * The Views internal multiton key.
-     *
-     * @type string
-     * @protected
-     */
-
     this.multitonKey = key;
     View.instanceMap[this.multitonKey] = this;
-
-
     this.initializeView();
   }
 
@@ -123,7 +127,7 @@ export default class View {
    * @return {void}
    */
   initializeView() {
-
+    return this;
   }
 
   /**
@@ -160,6 +164,8 @@ export default class View {
       this.observerMap[notificationName] = [];
     }
     this.observerMap[notificationName].push(observer);
+
+    return this;
   }
 
   /**
@@ -196,6 +202,8 @@ export default class View {
         observer.notifyObserver(notification);
       }
     }
+
+    return this;
 
     // var observers = this.observerMap[notification.getName()];
     // if (observers && observers.length) {
@@ -241,6 +249,8 @@ export default class View {
     if (observers.length === 0) {
       delete this.observerMap[notificationName];
     }
+
+    return this;
   }
 
   /**
@@ -262,7 +272,7 @@ export default class View {
    */
   registerMediator(mediator) {
     if (this.mediatorMap[mediator.getMediatorName()]) {
-      return;
+      return this;
     }
 
     mediator.initializeNotifier(this.multitonKey);
@@ -282,6 +292,8 @@ export default class View {
     }
 
     mediator.onRegister();
+
+    return this;
   }
 
   /**

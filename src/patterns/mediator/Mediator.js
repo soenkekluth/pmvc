@@ -39,6 +39,9 @@ import Notifier from '../observer/Notifier';
 
 export default class Mediator extends Notifier {
 
+  mediatorName = null;
+  viewComponent = null;
+
   constructor(mediatorName, viewComponent) {
     super();
     this.mediatorName = mediatorName || Mediator.NAME; // this.constructor.NAME;

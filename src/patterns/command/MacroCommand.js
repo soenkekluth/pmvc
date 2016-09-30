@@ -38,13 +38,15 @@ import Notifier from '../observer/Notifier';
 
 export default class MacroCommand extends Notifier {
 
+  /**
+   * @private
+   * @type {Array.<puremvc.SimpleCommand|puremvc.MacroCommand>}
+   */
+  subCommands = [];
+
   constructor() {
     super();
-    /**
-     * @private
-     * @type {Array.<puremvc.SimpleCommand|puremvc.MacroCommand>}
-     */
-    this.subCommands = [];
+
     this.initializeMacroCommand();
   }
 
@@ -95,8 +97,8 @@ export default class MacroCommand extends Notifier {
   execute(note) {
     // SIC- TODO optimize
     while (this.subCommands.length > 0) {
-      var ref = this.subCommands.shift();
-      var cmd = new ref;
+      var Ref = this.subCommands.shift();
+      var cmd = new Ref;
       cmd.initializeNotifier(this.multitonKey);
       cmd.execute(note);
     }

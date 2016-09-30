@@ -64,6 +64,9 @@ var Mediator = function (_Notifier) {
 
     var _this = _possibleConstructorReturn(this, _Notifier.call(this));
 
+    _this.mediatorName = null;
+    _this.viewComponent = null;
+
     _this.mediatorName = mediatorName || Mediator.NAME; // this.constructor.NAME;
     _this.viewComponent = viewComponent;
     return _this;

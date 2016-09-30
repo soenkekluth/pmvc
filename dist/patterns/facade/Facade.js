@@ -43,48 +43,34 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                                                                                                                                                            */
 
 var Facade = function () {
+
+  /**
+   * @ignore
+   * The Facades correspnding View instance.
+   *
+   * @protected
+   * @type puremvc.View
+   */
+
+
+  /**
+   * @ignore
+   * The Facades corresponding Controller
+   *
+   * @protected
+   * @type puremvc.Controller
+   */
   function Facade(key) {
     _classCallCheck(this, Facade);
+
+    this.controller = null;
+    this.model = null;
+    this.view = null;
+    this.multitonKey = null;
 
     if (Facade.instanceMap[key]) {
       throw new Error(Facade.MULTITON_MSG);
     }
-
-    /**
-     * @ignore
-     * The Facades corresponding Controller
-     *
-     * @protected
-     * @type puremvc.Controller
-     */
-    this.controller = null;
-
-    /**
-     * @ignore
-     * The Facades corresponding Model instance
-     *
-     * @protected
-     * @type puremvc.Model
-     */
-    this.model = null;
-
-    /**
-     * @ignore
-     * The Facades correspnding View instance.
-     *
-     * @protected
-     * @type puremvc.View
-     */
-    this.view = null;
-
-    /**
-     * @ignore
-     * The Facades multiton key.
-     *
-     * @protected
-     * @type string
-     */
-    this.multitonKey = null;
 
     Facade.instanceMap[key] = this;
     this.initializeNotifier(key);
@@ -104,6 +90,24 @@ var Facade = function () {
    *     };
    * @protected
    * @return {void}
+   */
+
+
+  /**
+   * @ignore
+   * The Facades multiton key.
+   *
+   * @protected
+   * @type string
+   */
+
+
+  /**
+   * @ignore
+   * The Facades corresponding Model instance
+   *
+   * @protected
+   * @type puremvc.Model
    */
 
 
@@ -162,6 +166,8 @@ var Facade = function () {
    * @protected
    * @return {void}
    */
+
+
   Facade.prototype.initializeController = function initializeController() {
     if (this.controller) {
       return;
@@ -198,7 +204,9 @@ var Facade = function () {
 
 
   Facade.prototype.initializeModel = function initializeModel() {
-    if (this.model) return;
+    if (this.model) {
+      return;
+    }
 
     this.model = _Model2.default.getInstance(this.multitonKey);
   };
@@ -236,7 +244,9 @@ var Facade = function () {
 
 
   Facade.prototype.initializeView = function initializeView() {
-    if (this.view) return;
+    if (this.view) {
+      return;
+    }
 
     this.view = _View2.default.getInstance(this.multitonKey);
   };

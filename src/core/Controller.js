@@ -78,19 +78,38 @@ export default class Controller {
    */
   static MULTITON_MSG = "controller key for this Multiton key already constructed";
 
+  /**
+   * Local reference to the Controller's View
+   *
+   * @protected
+   * @type {View}
+   */
+  view = null;
+
+  /**
+   * The Controller's multiton key
+   *
+   * @protected
+   * @type {string}
+   */
+  multitonKey = null;
+
+
+  /**
+   * Note name to command constructor mappings
+   *
+   * @protected
+   * @type {Object}
+   */
+  commandMap = {};
+
+
+
   constructor(key) {
 
     if (Controller.instanceMap[key]) {
       throw new Error(Controller.MULTITON_MSG);
     }
-
-    /**
-     * Local reference to the Controller's View
-     *
-     * @protected
-     * @type {View}
-     */
-    this.view = null;
 
 
     /**
@@ -103,13 +122,6 @@ export default class Controller {
 
     Controller.instanceMap[this.multitonKey] = this;
 
-    /**
-     * Note name to command constructor mappings
-     *
-     * @protected
-     * @type {Object}
-     */
-    this.commandMap = {};
     this.initializeController();
   }
 
@@ -167,7 +179,7 @@ export default class Controller {
    * @return {void}
    */
   executeCommand(note) {
-    console.log('executeCommand', note)
+
     if(!note){
       return;
     }

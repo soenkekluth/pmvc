@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -37,23 +37,19 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
  * @constructor
  */
 var Observer = function () {
+
+  /**
+   * The Observers callback Function
+   *
+   * @private
+   * @type {Function}
+   */
   function Observer(notifyMethod, notifyContext) {
     _classCallCheck(this, Observer);
 
-    /**
-     * The Observers callback Function
-     *
-     * @private
-     * @type {Function}
-     */
     this.notify = null;
-
-    /**
-     * The Observers callback Object
-     * @private
-     * @type {Object}
-     */
     this.context = null;
+
 
     this.setNotifyMethod(notifyMethod);
     this.setNotifyContext(notifyContext);
@@ -66,6 +62,13 @@ var Observer = function () {
    * @param {Function} notifyMethod
    *  the notification (callback) method of the interested object.
    * @return {void}
+   */
+
+
+  /**
+   * The Observers callback Object
+   * @private
+   * @type {Object}
    */
 
 
@@ -121,11 +124,10 @@ var Observer = function () {
 
 
   Observer.prototype.notifyObserver = function notifyObserver(notification) {
+    // this.notify.bind(this.context);
     this.notify.call(this.context, notification);
     // console.log(notification);
     // this.getNotifyMethod().apply(this.getNotifyContext(), notification);
-
-    // this.notify.bind(this.context);
   };
 
   /**
@@ -145,4 +147,4 @@ var Observer = function () {
 }();
 
 exports.default = Observer;
-module.exports = exports['default'];
+module.exports = exports["default"];

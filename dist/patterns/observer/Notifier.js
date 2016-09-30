@@ -51,25 +51,18 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                                                                                                                                                            */
 
 var Notifier = function () {
+
+  /**
+   * @protected
+   * A reference to this Notifier's Facade. This reference will not be available
+   * until #initializeNotifier has been called.
+   *
+   * @type {puremvc.Facade}
+   */
   function Notifier() {
     _classCallCheck(this, Notifier);
 
-    /**
-     * @protected
-     * A reference to this Notifier's Facade. This reference will not be available
-     * until #initializeNotifier has been called.
-     *
-     * @type {puremvc.Facade}
-     */
     this.facade = null;
-
-    /**
-     * @ignore
-     * The Notifiers internal multiton key.
-     *
-     * @protected
-     * @type string
-     */
     this.multitonKey = null;
   }
   /**
@@ -85,6 +78,15 @@ var Notifier = function () {
    * @param {string} [type]
    *  The notification type
    * @return {void}
+   */
+
+
+  /**
+   * @ignore
+   * The Notifiers internal multiton key.
+   *
+   * @protected
+   * @type string
    */
 
 

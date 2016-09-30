@@ -35,19 +35,32 @@
  *  An error is thrown if this multitons key is already in use by another instance
  */
 export default class Model {
+
+  /**
+   * @ignore
+   * The map used by the Model to store Proxy instances.
+   *
+   * @protected
+   * @type Array
+   */
+  proxyMap = {};
+
+
+  /**
+   * @ignore
+   * The Models multiton key.
+   *
+   * @protected
+   * @type string
+   */
+  multitonKey = null;
+
+
   constructor(key) {
+
     if (Model.instanceMap[key]) {
       throw new Error(Model.MULTITON_MSG);
     }
-
-    /**
-     * @ignore
-     * The map used by the Model to store Proxy instances.
-     *
-     * @protected
-     * @type Array
-     */
-    this.proxyMap = {};
 
 
     /**
@@ -91,7 +104,7 @@ export default class Model {
       return null;
     }
     if (!Model.instanceMap[key]) {
-      Model.instanceMap[key] = new Model(key);
+      return new Model(key);
     }
 
     return Model.instanceMap[key];
@@ -167,7 +180,7 @@ export default class Model {
    * @static
    * @type Array
    */
-  static instanceMap = {}
+  static instanceMap = {};
 
 
   /**
@@ -177,6 +190,6 @@ export default class Model {
    * @static
    * @type {string}
    */
-  static MULTITON_MSG = "Model instance for this Multiton key already constructed!"
+  static MULTITON_MSG = "Model instance for this Multiton key already constructed!";
 
 }

@@ -41,7 +41,9 @@
  */
 export default class Notification {
 
-  static test = 'test';
+  name = null;
+  body = null;
+  type = null;
 
   constructor(name, body, type) {
     this.name = name;
@@ -103,8 +105,8 @@ export default class Notification {
    */
   toString() {
     var msg = "Notification Name: " + this.getName();
-    msg += "\nBody:" + ((this.body == null) ? "null" : this.body.toString());
-    msg += "\nType:" + ((this.type == null) ? "null" : this.type);
+    msg += "\nBody:" + ((this.body === null) ? "null" : this.body.toString());
+    msg += "\nType:" + ((this.type === null) ? "null" : this.type);
     return msg;
   }
 

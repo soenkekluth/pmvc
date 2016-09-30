@@ -8,7 +8,7 @@
     "dist/**",
     "demo/**"
   ],
-  "disallowEmptyBlocks": true,
+  "disallowEmptyBlocks": false,
   "disallowKeywords": [
       "with"
   ],

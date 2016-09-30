@@ -10,7 +10,7 @@
     "build-example": "BABEL_ENV=example babel examples/es6 -d examples/es5",
     "dist": "npm run build && npm run build-lib",
     "eslint:fix": "eslint src --fix",
-    "eslint": "eslint src",
+    "eslint": "eslint",
     "start-old": "npm run build && run-p watch-js devserver",
     "start": "npm run build && run-s watch-js",
     "example": "babel-node examples/index.js",

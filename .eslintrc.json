@@ -6,6 +6,7 @@
   "extends": "airbnb",
   "installedESLint": true,
   "rules": {
+    "no-console": 0,
     "no-unused-vars": 0,
     "class-methods-use-this": 0,
     "no-plusplus": 0

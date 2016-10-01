@@ -11,11 +11,20 @@ pmvc (PureMVC) is a lightweight framework for creating applications based upon t
 npm install --save pmvc
 ```
 
-## Usage
+## Usage by example
+### downlaod or clone
 [example](https://github.com/soenkekluth/pmvc/tree/master/examples/simple)
+
 ```sh
+npm i
 npm run start:example
 ```
+
+## Dev
+```sh
+npm run start
+```
+
 
 ## License
 * PureMVC MultiCore Framework for Javascript (Ported) - Copyright © 2016 Soenke Kluth 

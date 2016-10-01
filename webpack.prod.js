@@ -12,6 +12,7 @@ module.exports = {
     'library': `pmvc`,
     'libraryTarget': 'umd'
   },
+  target: 'node',
   debug: false,
   'module': {
     'loaders': [{

@@ -1,8 +1,14 @@
-"use strict";
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _Notification = require('./Notification');
+
+var _Notification2 = _interopRequireDefault(_Notification);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -36,6 +42,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
  *  the notification context of the interested object
  * @constructor
  */
+
 var Observer = function () {
 
   /**
@@ -146,4 +153,4 @@ var Observer = function () {
 }();
 
 exports.default = Observer;
-module.exports = exports["default"];
+module.exports = exports['default'];

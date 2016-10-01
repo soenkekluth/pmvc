@@ -54,8 +54,9 @@
  *  If instance for this Multiton key has already been constructed
  */
 
-import View from './View';
+import Notification from '../patterns/observer/Notification';
 import Observer from '../patterns/observer/Observer';
+import View from './View';
 
 export default class Controller {
 
@@ -66,7 +67,7 @@ export default class Controller {
    * @protected
    * @type {Object}
    */
-  static instanceMap = {};
+  static instanceMap: Object = {};
 
 
   /**
@@ -77,7 +78,7 @@ export default class Controller {
    * @protected
    * @type {string}
    */
-  static MULTITON_MSG = 'controller key for this Multiton key already constructed';
+  static MULTITON_MSG: string = 'controller key for this Multiton key already constructed';
 
   /**
    * Local reference to the Controller's View
@@ -85,7 +86,7 @@ export default class Controller {
    * @protected
    * @type {View}
    */
-  view = null;
+  view: View;
 
   /**
    * The Controller's multiton key
@@ -93,7 +94,7 @@ export default class Controller {
    * @protected
    * @type {string}
    */
-  multitonKey = null;
+  multitonKey: string;
 
 
   /**
@@ -102,10 +103,10 @@ export default class Controller {
    * @protected
    * @type {Object}
    */
-  commandMap = {};
+  commandMap: Object = {};
 
 
-  constructor(key) {
+  constructor(key: string) {
     if (Controller.instanceMap[key]) {
       throw new Error(Controller.MULTITON_MSG);
     }
@@ -144,7 +145,7 @@ export default class Controller {
    * @return {void}
    */
 
-  initializeController() {
+  initializeController(): void {
     this.view = View.getInstance(this.multitonKey);
   }
 
@@ -158,7 +159,7 @@ export default class Controller {
    * @return {Controller}
    *  the Multiton instance of Controller
    */
-  static getInstance(key) {
+  static getInstance(key: string): Controller {
     if (!key) {
       return null;
     }
@@ -177,11 +178,11 @@ export default class Controller {
    * @param {Notification} note
    * @return {void}
    */
-  executeCommand(note) {
+  executeCommand(note: Notification): void {
     if (!note) {
       return;
     }
-    const CommandClassRef = this.commandMap[note.getName()];
+    const CommandClassRef: Class = this.commandMap[note.getName()];
     if (!CommandClassRef) {
       return;
     }
@@ -207,7 +208,7 @@ export default class Controller {
    *  a command constructor
    * @return {void}
    */
-  registerCommand(notificationName, CommandClassRef) {
+  registerCommand(notificationName: string, CommandClassRef: Class): void {
     if (!this.commandMap[notificationName]) {
       this.view.registerObserver(notificationName, new Observer(this.executeCommand, this));
     }
@@ -222,7 +223,7 @@ export default class Controller {
    * @return {boolean}
    *  whether a Command is currently registered for the given notificationName.
    */
-  hasCommand(notificationName) {
+  hasCommand(notificationName: string): boolean {
     return !!this.commandMap[notificationName];
   }
 
@@ -235,7 +236,7 @@ export default class Controller {
    *  the name of the Notification to remove the command mapping for
    * @return {void}
    */
-  removeCommand(notificationName) {
+  removeCommand(notificationName: string): void {
     if (this.hasCommand(notificationName)) {
       this.view.removeObserver(notificationName, this);
       delete this.commandMap[notificationName];
@@ -250,7 +251,7 @@ export default class Controller {
    *  multitonKey of Controller instance to remove
    * @return {void}
    */
-  static removeController(key) {
+  static removeController(key: string): void {
     delete this.instanceMap[key];
   }
 

@@ -3,3 +3,6 @@ export const NotificationNames = {
   STARTUP_COMPLETE: 'STARTUP_COMPLETE',
   TEST: 'TEST',
 };
+
+
+export const something = {};

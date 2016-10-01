@@ -1,4 +1,4 @@
-import { SimpleCommand } from '../../src/pmvc';
+import { SimpleCommand } from '../../../src/pmvc';
 import ApplicationProxy from '../model/app-proxy';
 import ApplicationView from '../view/app-view';
 import ApplicationMediator from '../view/app-mediator';

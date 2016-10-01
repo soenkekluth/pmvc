@@ -4,6 +4,12 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _Proxy = require('../patterns/proxy/Proxy');
+
+var _Proxy2 = _interopRequireDefault(_Proxy);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 /**
@@ -42,6 +48,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
  * @throws {Error}
  *  An error is thrown if this multitons key is already in use by another instance
  */
+
 var Model = function () {
 
   /**
@@ -55,7 +62,7 @@ var Model = function () {
     _classCallCheck(this, Model);
 
     this.proxyMap = {};
-    this.multitonKey = null;
+    this.multitonKey = '';
 
     if (Model.instanceMap[key]) {
       throw new Error(Model.MULTITON_MSG);

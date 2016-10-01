@@ -1,5 +1,3 @@
-
-
 /**
  * @author PureMVC JS Native Port by David Foley, Frédéric Saunier, & Alain Duchesneau
  * @author Copyright(c) 2006-2012 Futurescale, Inc., Some rights reserved.
@@ -41,10 +39,10 @@ import Notifier from '../observer/Notifier';
 
 export default class Mediator extends Notifier {
 
-  mediatorName = null;
-  viewComponent = null;
+  mediatorName: string;
+  viewComponent: any;
 
-  constructor(mediatorName, viewComponent) {
+  constructor(mediatorName: string, viewComponent: any) {
     super();
     this.mediatorName = mediatorName || Mediator.NAME; // this.constructor.NAME;
     this.viewComponent = viewComponent;
@@ -59,7 +57,7 @@ export default class Mediator extends Notifier {
    *
    * @type {string}
    */
-  static NAME = 'Mediator';
+  static NAME: string = 'Mediator';
 
   /**
    * Get the name of the Mediator
@@ -67,7 +65,7 @@ export default class Mediator extends Notifier {
    * @return {string}
    *  The Mediator name
    */
-  getMediatorName() {
+  getMediatorName(): string {
     return this.mediatorName;
   }
 
@@ -82,13 +80,13 @@ export default class Mediator extends Notifier {
    * @param {Object} the view component
    * @return {void}
    */
-  setViewComponent(viewComponent) {
+  setViewComponent(viewComponent): void {
     this.viewComponent = viewComponent;
   }
 
-  set view(viewComponent) {
-    this.viewComponent = viewComponent;
-  }
+  // set view(viewComponent): void {
+  //   this.viewComponent = viewComponent;
+  // }
 
   /**
    * Get the Mediators view component.
@@ -110,7 +108,7 @@ export default class Mediator extends Notifier {
    * @return {Object}
    *  The view component
    */
-  getViewComponent() {
+  getViewComponent(): Object {
     return this.viewComponent;
   }
 
@@ -126,7 +124,7 @@ export default class Mediator extends Notifier {
    * @return {Array}
    *  The list of Notification names.
    */
-  listNotificationInterests() {
+  listNotificationInterests(): Array {
     return [];
   }
 
@@ -140,21 +138,20 @@ export default class Mediator extends Notifier {
    * @param {puremvc.Notification} notification
    * @return {void}
    */
-  handleNotification(notification) {
-    return;
+  handleNotification(notification): void {
   }
 
   /**
    * Called by the View when the Mediator is registered
    * @return {void}
    */
-  onRegister() {
+  onRegister(): void {
   }
 
   /**
    * Called by the View when the Mediator is removed
    */
-  onRemove() {
+  onRemove(): void {
   }
 
 

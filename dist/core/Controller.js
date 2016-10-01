@@ -3,15 +3,18 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = undefined;
 
-var _View = require('./View');
+var _Notification = require('../patterns/observer/Notification');
 
-var _View2 = _interopRequireDefault(_View);
+var _Notification2 = _interopRequireDefault(_Notification);
 
 var _Observer = require('../patterns/observer/Observer');
 
 var _Observer2 = _interopRequireDefault(_Observer);
+
+var _View = require('./View');
+
+var _View2 = _interopRequireDefault(_View);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -74,14 +77,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 var Controller = function () {
 
   /**
-   * The Controller's multiton key
-   *
-   * @protected
-   * @type {string}
-   */
-
-
-  /**
    * @ignore
    *
    * Message constants
@@ -92,8 +87,6 @@ var Controller = function () {
   function Controller(key) {
     _classCallCheck(this, Controller);
 
-    this.view = null;
-    this.multitonKey = null;
     this.commandMap = {};
 
     if (Controller.instanceMap[key]) {
@@ -146,6 +139,14 @@ var Controller = function () {
    *
    * @protected
    * @type {View}
+   */
+
+
+  /**
+   * The Controller's multiton key
+   *
+   * @protected
+   * @type {string}
    */
 
 

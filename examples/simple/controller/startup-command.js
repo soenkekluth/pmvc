@@ -1,4 +1,4 @@
- import { MacroCommand, SimpleCommand } from '../../src/pmvc';
+ import { MacroCommand, SimpleCommand } from '../../../src/pmvc';
  import { NotificationNames } from '../constants';
  import { ModelPrepCommand, ViewPrepCommand } from './prep-commands';
 

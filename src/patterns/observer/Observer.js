@@ -30,6 +30,11 @@
  *  the notification context of the interested object
  * @constructor
  */
+
+
+import Notification from './Notification';
+
+
 export default class Observer {
 
   /**
@@ -38,17 +43,17 @@ export default class Observer {
    * @private
    * @type {Function}
    */
-  notify = null;
+  notify: Function = null;
 
   /**
    * The Observers callback Object
    * @private
    * @type {Object}
    */
-  context = null;
+  context: Object = null;
 
 
-  constructor(notifyMethod, notifyContext) {
+  constructor(notifyMethod: Function, notifyContext: Object) {
     this.setNotifyMethod(notifyMethod);
     this.setNotifyContext(notifyContext);
   }
@@ -61,7 +66,7 @@ export default class Observer {
    *  the notification (callback) method of the interested object.
    * @return {void}
    */
-  setNotifyMethod(notifyMethod) {
+  setNotifyMethod(notifyMethod: Function): void {
     this.notify = notifyMethod;
   }
 
@@ -73,7 +78,7 @@ export default class Observer {
    *
    * @return {void}
    */
-  setNotifyContext(notifyContext) {
+  setNotifyContext(notifyContext: Object): void {
     this.context = notifyContext;
   }
 
@@ -83,7 +88,7 @@ export default class Observer {
    * @private
    * @return {Function}
    */
-  getNotifyMethod() {
+  getNotifyMethod(): Function {
     return this.notify;
   }
 
@@ -93,7 +98,7 @@ export default class Observer {
    * @private
    * @return {Object}
    */
-  getNotifyContext() {
+  getNotifyContext(): Object {
     return this.context;
   }
 
@@ -104,7 +109,7 @@ export default class Observer {
    *  The Notification to pass to the interested objects notification method
    * @return {void}
    */
-  notifyObserver(notification) {
+  notifyObserver(notification: Notification): void {
     // this.notify.bind(this.context);
     this.notify.call(this.context, notification);
     // console.log(notification);
@@ -118,7 +123,7 @@ export default class Observer {
    *
    * @return {boolean}
    */
-  compareNotifyContext(object) {
+  compareNotifyContext(object): boolean {
     return object === this.context;
   }
 

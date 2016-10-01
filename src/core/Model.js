@@ -36,6 +36,9 @@
  * @throws {Error}
  *  An error is thrown if this multitons key is already in use by another instance
  */
+
+import Proxy from '../patterns/proxy/Proxy';
+
 export default class Model {
 
   /**
@@ -45,7 +48,7 @@ export default class Model {
    * @protected
    * @type Array
    */
-  proxyMap = {};
+  proxyMap: Object = {};
 
 
   /**
@@ -55,10 +58,10 @@ export default class Model {
    * @protected
    * @type string
    */
-  multitonKey = null;
+  multitonKey: string = '';
 
 
-  constructor(key) {
+  constructor(key: string) {
     if (Model.instanceMap[key]) {
       throw new Error(Model.MULTITON_MSG);
     }
@@ -87,7 +90,7 @@ export default class Model {
    *
    * @return void
    */
-  initializeModel() {}
+  initializeModel(): void {}
 
 
   /**
@@ -100,7 +103,7 @@ export default class Model {
    * @return {puremvc.Model}
    *  the instance for this Multiton key
    */
-  static getInstance(key) {
+  static getInstance(key: string): Model {
     if (!key) {
       return null;
     }
@@ -115,7 +118,7 @@ export default class Model {
    * Register a Proxy with the Model
    * @param {puremvc.Proxy}
    */
-  registerProxy(proxy) {
+  registerProxy(proxy: Proxy): void {
     proxy.initializeNotifier(this.multitonKey);
     this.proxyMap[proxy.getProxyName()] = proxy;
     proxy.onRegister();
@@ -128,7 +131,7 @@ export default class Model {
    * @return {puremvc.Proxy}
    *  The Proxy instance previously registered with the provided proxyName
    */
-  retrieveProxy(proxyName) {
+  retrieveProxy(proxyName: string): Proxy {
     return this.proxyMap[proxyName];
   }
 
@@ -138,7 +141,7 @@ export default class Model {
    * @return {boolean}
    *  whether a Proxy is currently registered with the given proxyName.
    */
-  hasProxy(proxyName) {
+  hasProxy(proxyName: string): boolean {
     return !!this.proxyMap[proxyName];
   }
 
@@ -150,7 +153,7 @@ export default class Model {
    * @return {puremvc.Proxy}
    *  The Proxy that was removed from the Model
    */
-  removeProxy(proxyName) {
+  removeProxy(proxyName: string): Proxy {
     const proxy = this.proxyMap[proxyName];
     if (proxy) {
       delete this.proxyMap[proxyName];
@@ -167,7 +170,7 @@ export default class Model {
    * @param {string} key
    * @return {void}
    */
-  static removeModel(key) {
+  static removeModel(key: string): void {
     delete Model.instanceMap[key];
   }
 
@@ -180,7 +183,7 @@ export default class Model {
    * @static
    * @type Array
    */
-  static instanceMap = {};
+  static instanceMap: Object = {};
 
 
   /**
@@ -190,6 +193,6 @@ export default class Model {
    * @static
    * @type {string}
    */
-  static MULTITON_MSG = 'Model instance for this Multiton key already constructed!';
+  static MULTITON_MSG: string = 'Model instance for this Multiton key already constructed!';
 
 }

@@ -1,5 +1,21 @@
 'use strict';
 
+var _Observer = require('./patterns/observer/Observer');
+
+var _Observer2 = _interopRequireDefault(_Observer);
+
+var _Notification = require('./patterns/observer/Notification');
+
+var _Notification2 = _interopRequireDefault(_Notification);
+
+var _Facade = require('./patterns/facade/Facade');
+
+var _Facade2 = _interopRequireDefault(_Facade);
+
+var _Notifier = require('./patterns/observer/Notifier');
+
+var _Notifier2 = _interopRequireDefault(_Notifier);
+
 var _Model = require('./core/Model');
 
 var _Model2 = _interopRequireDefault(_Model);
@@ -20,25 +36,9 @@ var _SimpleCommand = require('./patterns/command/SimpleCommand');
 
 var _SimpleCommand2 = _interopRequireDefault(_SimpleCommand);
 
-var _Facade = require('./patterns/facade/Facade');
-
-var _Facade2 = _interopRequireDefault(_Facade);
-
 var _Mediator = require('./patterns/mediator/Mediator');
 
 var _Mediator2 = _interopRequireDefault(_Mediator);
-
-var _Notification = require('./patterns/observer/Notification');
-
-var _Notification2 = _interopRequireDefault(_Notification);
-
-var _Notifier = require('./patterns/observer/Notifier');
-
-var _Notifier2 = _interopRequireDefault(_Notifier);
-
-var _Observer = require('./patterns/observer/Observer');
-
-var _Observer2 = _interopRequireDefault(_Observer);
 
 var _Proxy = require('./patterns/proxy/Proxy');
 

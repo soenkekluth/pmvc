@@ -40,8 +40,10 @@
  *  if instance for this Multiton key has already been constructed
  */
 
+import Notification from '../patterns/observer/Notification';
 import Observer from '../patterns/observer/Observer';
-
+import Notifier from '../patterns/observer/Notifier';
+import Mediator from '../patterns/mediator/Mediator';
 
 export default class View {
 
@@ -51,7 +53,7 @@ export default class View {
    *
    * @return {void}
    */
-  static removeView(key) {
+  static removeView(key: string): void {
     delete View.instanceMap[key];
   }
 
@@ -63,7 +65,7 @@ export default class View {
    * @type Array
    * @protected
    */
-  static instanceMap = {};
+  static instanceMap: Object = {};
 
 
   /**
@@ -75,7 +77,7 @@ export default class View {
    * @const
    * @static
    */
-  static MULTITON_MSG = 'View instance for this Multiton key already constructed!';
+  static MULTITON_MSG: string = 'View instance for this Multiton key already constructed!';
 
 
   /**
@@ -85,7 +87,7 @@ export default class View {
    * @type Array
    * @protected
    */
-  mediatorMap = {};
+  mediatorMap: Object = {};
 
 
   /**
@@ -95,7 +97,7 @@ export default class View {
    * @type Array
    * @protected
    */
-  observerMap = {};
+  observerMap: Object = {};
 
 
   /**
@@ -106,10 +108,10 @@ export default class View {
    * @protected
    */
 
-  multitonKey = null;
+  multitonKey: string = '';
 
 
-  constructor(key) {
+  constructor(key: string) {
     if (View.instanceMap[key]) {
       throw new Error(View.MULTITON_MSG);
     }
@@ -130,8 +132,8 @@ export default class View {
    *
    * @return {void}
    */
-  initializeView() {
-    return this;
+  initializeView(): void {
+    // return this;
   }
 
   /**
@@ -142,7 +144,7 @@ export default class View {
    * @return {puremvc.View}
    *  The Singleton instance of View
    */
-  static getInstance(key) {
+  static getInstance(key: string): View {
     if (!key) {
       return null;
     }
@@ -163,13 +165,11 @@ export default class View {
    *  The Observer to register.
    * @return {void}
    */
-  registerObserver(notificationName, observer) {
+  registerObserver(notificationName: string, observer: Observer): void {
     if (!this.observerMap[notificationName]) {
       this.observerMap[notificationName] = [];
     }
     this.observerMap[notificationName].push(observer);
-
-    return this;
   }
 
   /**
@@ -183,49 +183,32 @@ export default class View {
    *  The Notification to notify Observers of
    * @return {void}
    */
-  notifyObservers(notification) {
-    if (this.observerMap[notification.getName()]) {
-      // Get a reference to the observers list for this notification name
-      const observerArray = this.observerMap[notification.getName()];
+  notifyObservers(notification: Notification): void {
+    const observerArray: Array<Observer> = this.observerMap[notification.getName()] || [];
+    if (observerArray.length) {
+    //   // Get a reference to the observers list for this notification name
 
-      // Copy observers from reference array to working array,
-      // since the reference array may change during the notification loop
-      const observers = [];
-      let observer;
-      let i;
+
+    //   // Copy observers from reference array to working array,
+    //   // since the reference array may change during the notification loop
+      // const observers = [];
+
+      let i : number = 0;
       for (i = 0; i < observerArray.length; i++) {
-        observer = observerArray[i];
-        observers.push(observer);
-      }
-
-      // Notify Observers from the working array
-      for (i = 0; i < observers.length; i++) {
-        observer = observers[i];
+        const observer: Observer = observerArray[i];
         observer.notifyObserver(notification);
+        // observer = observerArray[i];
+        // observers.push(observer);
       }
+
+    //   // Notify Observers from the working array
+      // for (i = 0; i < observers.length; i++) {
+      //   let observer: Observer = observers[i];
+      //   observer.notifyObserver(notification);
+      // }
     }
-
-    return this;
-
-    // var observers = this.observerMap[notification.getName()];
-    // if (observers && observers.length) {
-    //   var i = -1;
-    //   while (++i < observers.length) {
-    //     observers[i].notifyObserver(notification);
-    //   }
-    // }
-
-
-    // for (var i = 0; i < observerArray.length; i++) {
-    //   observer = observerArray[i];
-    //   observers.push(observer);
-    // }
-
-    // for (var i = 0; i < observers.length; i++) {
-    //   observer = observers[i];
-    //   observer.notifyObserver(notification);
-    // }
   }
+
 
   /**
    * Remove the Observer for a given notifyContext from an observer list for
@@ -237,10 +220,10 @@ export default class View {
    *  Remove the Observer with this object as its notifyContext
    * @return {void}
    */
-  removeObserver(notificationName, notifyContext) {
+  removeObserver(notificationName: string, notifyContext: any): void {
     // SIC
     const observers = this.observerMap[notificationName];
-    for (let i = 0; i < observers.length; i++) {
+    for (let i: number = 0; i < observers.length; i++) {
       if (observers[i].compareNotifyContext(notifyContext) === true) {
         observers.splice(i, 1);
         break;
@@ -250,8 +233,6 @@ export default class View {
     if (observers.length === 0) {
       delete this.observerMap[notificationName];
     }
-
-    return this;
   }
 
   /**
@@ -271,9 +252,9 @@ export default class View {
    * @param {puremvc.Mediator}
    *  a reference to the Mediator instance
    */
-  registerMediator(mediator) {
+  registerMediator(mediator: Mediator): void {
     if (this.mediatorMap[mediator.getMediatorName()]) {
-      return this;
+      return;
     }
 
     mediator.initializeNotifier(this.multitonKey);
@@ -281,10 +262,10 @@ export default class View {
     this.mediatorMap[mediator.getMediatorName()] = mediator;
 
     // get notification interests if any
-    const interests = mediator.listNotificationInterests();
+    const interests: Array = mediator.listNotificationInterests();
 
     // register mediator as an observer for each notification
-    if (interests.length > 0) {
+    if (interests.length) {
       // create observer referencing this mediators handleNotification method
       const observer = new Observer(mediator.handleNotification, mediator);
       for (let i = 0; i < interests.length; i++) {
@@ -293,8 +274,6 @@ export default class View {
     }
 
     mediator.onRegister();
-
-    return this;
   }
 
   /**
@@ -305,7 +284,7 @@ export default class View {
    * @return {puremvc.Mediator}
    *  The Mediator instance previously registered with the given mediatorName
    */
-  retrieveMediator(mediatorName) {
+  retrieveMediator(mediatorName: string): Mediator {
     return this.mediatorMap[mediatorName];
   }
 
@@ -317,12 +296,12 @@ export default class View {
    * @return {puremvc.Mediator}
    *  The Mediator that was removed from the View
    */
-  removeMediator(mediatorName) {
-    const mediator = this.mediatorMap[mediatorName];
+  removeMediator(mediatorName: string): Mediator {
+    const mediator: Mediator = this.retrieveMediator(mediatorName);
     if (mediator) {
       // for every notification the mediator is interested in...
-      const interests = mediator.listNotificationInterests();
-      for (let i = 0; i < interests.length; i++) {
+      const interests: Array = mediator.listNotificationInterests();
+      for (let i: number = 0; i < interests.length; i++) {
         // remove the observer linking the mediator to the notification
         // interest
         this.removeObserver(interests[i], mediator);
@@ -345,8 +324,8 @@ export default class View {
    * @return {boolean}
    *  Whether a Mediator is registered with the given mediatorname
    */
-  hasMediator(mediatorName) {
-    return !!this.mediatorMap[mediatorName];
+  hasMediator(mediatorName: string): boolean {
+    return !!this.retrieveMediator(mediatorName);
   }
 
 

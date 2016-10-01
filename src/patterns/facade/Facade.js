@@ -19,10 +19,12 @@
  *  If an attempt is made to instantiate Facade directly
  */
 
+import Notification from '../../patterns/observer/Notification';
+import Controller from '../../core/Controller';
 import Model from '../../core/Model';
 import View from '../../core/View';
-import Notifikation from '../../patterns/observer/Notification';
-import Controller from '../../core/Controller';
+import Mediator from '../../patterns/mediator/Mediator';
+import Proxy from '../../patterns/proxy/Proxy';
 
 export default class Facade {
 
@@ -34,7 +36,7 @@ export default class Facade {
    * @protected
    * @type puremvc.Controller
    */
-  controller = null;
+  controller: Controller = null;
 
   /**
    * @ignore
@@ -43,7 +45,7 @@ export default class Facade {
    * @protected
    * @type puremvc.Model
    */
-  model = null;
+  model: Model = null;
 
   /**
    * @ignore
@@ -52,7 +54,7 @@ export default class Facade {
    * @protected
    * @type puremvc.View
    */
-  view = null;
+  view: View = null;
 
   /**
    * @ignore
@@ -61,10 +63,10 @@ export default class Facade {
    * @protected
    * @type string
    */
-  multitonKey = null;
+  multitonKey: string = null;
 
 
-  constructor(key) {
+  constructor(key: string) {
     if (Facade.instanceMap[key]) {
       throw new Error(Facade.MULTITON_MSG);
     }
@@ -88,7 +90,7 @@ export default class Facade {
    * @protected
    * @return {void}
    */
-  initializeFacade() {
+  initializeFacade(): void {
     this.initializeModel();
     this.initializeController();
     this.initializeView();
@@ -103,7 +105,7 @@ export default class Facade {
    *  The multiton key use to retrieve a particular Facade instance
    * @return {puremvc.Facade}
    */
-  static getInstance(key) {
+  static getInstance(key): Facade {
     if (!key) {
       return null;
     }
@@ -142,7 +144,7 @@ export default class Facade {
    * @protected
    * @return {void}
    */
-  initializeController() {
+  initializeController(): void {
     if (this.controller) {
       return;
     }
@@ -175,7 +177,7 @@ export default class Facade {
    *
    * @return {void}
    */
-  initializeModel() {
+  initializeModel(): void {
     if (this.model) {
       return;
     }
@@ -213,7 +215,7 @@ export default class Facade {
    * to the Facade during their construction.
    * @return {void}
    */
-  initializeView() {
+  initializeView(): void {
     if (this.view) {
       return;
     }
@@ -225,12 +227,12 @@ export default class Facade {
    * Register a command with the Controller by Notification name
    * @param {string} notificationName
    *  The name of the Notification to associate the command with
-   * @param {Function} commandClassRef
+   * @param {Function} CommandClassRef
    *  A reference ot the commands constructor.
    * @return {void}
    */
-  registerCommand(notificationName, commandClassRef) {
-    this.controller.registerCommand(notificationName, commandClassRef);
+  registerCommand(notificationName: string, CommandClassRef: Class): void {
+    this.controller.registerCommand(notificationName, CommandClassRef: Class);
   }
 
   /**
@@ -240,7 +242,7 @@ export default class Facade {
    *  The name of the the Notification to remove from the command mapping for.
    * @return {void}
    */
-  removeCommand(notificationName) {
+  removeCommand(notificationName: string): void {
     this.controller.removeCommand(notificationName);
   }
 
@@ -252,7 +254,7 @@ export default class Facade {
    * @return {boolean}
    *  Whether a comman is currently registered for the given notificationName
    */
-  hasCommand(notificationName) {
+  hasCommand(notificationName: string): boolean {
     return this.controller.hasCommand(notificationName);
   }
 
@@ -264,7 +266,7 @@ export default class Facade {
    *  The Proxy instance to be registered with the Model.
    * @return {void}
    */
-  registerProxy(proxy) {
+  registerProxy(proxy: Proxy): void {
     this.model.registerProxy(proxy);
   }
 
@@ -274,7 +276,7 @@ export default class Facade {
    * @param {string} proxyName
    * @return {puremvc.Proxy}
    */
-  retrieveProxy(proxyName) {
+  retrieveProxy(proxyName: string): Proxy {
     return this.model.retrieveProxy(proxyName);
   }
 
@@ -285,7 +287,7 @@ export default class Facade {
    * @return {puremvc.Proxy}
    *  The Proxy that was removed from the Model
    */
-  removeProxy(proxyName) {
+  removeProxy(proxyName: string): Proxy {
     let proxy = null;
     if (this.model) {
       proxy = this.model.removeProxy(proxyName);
@@ -301,7 +303,7 @@ export default class Facade {
    * @return {boolean}
    *  Whether a Proxy is currently registered with the given proxyName
    */
-  hasProxy(proxyName) {
+  hasProxy(proxyName): boolean {
     return this.model.hasProxy(proxyName);
   }
 
@@ -312,7 +314,7 @@ export default class Facade {
    *  A reference to the Mediator to register
    * @return {void}
    */
-  registerMediator(mediator) {
+  registerMediator(mediator): void {
     if (this.view) {
       this.view.registerMediator(mediator);
     }
@@ -326,7 +328,7 @@ export default class Facade {
    * @return {puremvc.Mediator}
    *  The retrieved Mediator
    */
-  retrieveMediator(mediatorName) {
+  retrieveMediator(mediatorName): Mediator {
     return this.view.retrieveMediator(mediatorName);
   }
 
@@ -338,7 +340,7 @@ export default class Facade {
    * @return {puremvc.Mediator}
    *  The removed Mediator
    */
-  removeMediator(mediatorName) {
+  removeMediator(mediatorName): Mediator {
     let mediator = null;
     if (this.view) {
       mediator = this.view.removeMediator(mediatorName);
@@ -355,7 +357,7 @@ export default class Facade {
    * @return {boolean}
    *  Whether a Mediator is registered with the given mediatorName
    */
-  hasMediator(mediatorName) {
+  hasMediator(mediatorName: string): boolean {
     return this.view.hasMediator(mediatorName);
   }
 
@@ -374,8 +376,8 @@ export default class Facade {
    *  The type of the notification
    * @return {void}
    */
-  sendNotification(notificationName, body, type) {
-    const n = new Notifikation(notificationName, body, type);
+  sendNotification(notificationName, body, type): void {
+    const n = new Notification(notificationName, body, type);
     this.notifyObservers(n);
   }
 
@@ -392,7 +394,7 @@ export default class Facade {
    *  The Notification to send
    * @return {void}
    */
-  notifyObservers(notification) {
+  notifyObservers(notification: Notification): void {
     if (this.view) {
       this.view.notifyObservers(notification);
     }
@@ -408,7 +410,7 @@ export default class Facade {
    * @param {string} key
    * @return {void}
    */
-  initializeNotifier(key) {
+  initializeNotifier(key: string) {
     this.multitonKey = key;
   }
 
@@ -421,7 +423,7 @@ export default class Facade {
    * @return {boolean}
    *  Whether a *Core* is registered with the given key
    */
-  static hasCore(key) {
+  static hasCore(key: string): boolean {
     return !!Facade.instanceMap[key];
   }
 
@@ -434,7 +436,7 @@ export default class Facade {
    * @param {string} key
    * @return {void}
    */
-  static removeCore(key) {
+  static removeCore(key: string): void {
     if (!Facade.instanceMap[key]) {
       return;
     }
@@ -453,7 +455,7 @@ export default class Facade {
    * @protected
    * @type Array
    */
-  static instanceMap = {};
+  static instanceMap: Object = {};
 
   /**
    * @ignore
@@ -463,7 +465,7 @@ export default class Facade {
    * @const
    * @static
    */
-  static MULTITON_MSG = 'Facade instance for this Multiton key already constructed!';
+  static MULTITON_MSG: string = 'Facade instance for this Multiton key already constructed!';
 
 
 }

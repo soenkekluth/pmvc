@@ -1,4 +1,4 @@
-import { Proxy } from '../../src/pmvc';
+import { Proxy } from '../../../src/pmvc';
 
 export default class ApplicationProxy extends Proxy {
   static NAME = 'ApplicationProxy';

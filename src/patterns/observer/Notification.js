@@ -43,11 +43,11 @@
  */
 export default class Notification {
 
-  name = null;
-  body = null;
-  type = null;
+  name: string = null;
+  body: any = null;
+  type: any = null;
 
-  constructor(name, body, type) {
+  constructor(name: string, body: any, type: any) {
     this.name = name;
     this.body = body;
     this.type = type;
@@ -59,7 +59,7 @@ export default class Notification {
    * @return {string}
    *  The name of the Notification instance
    */
-  getName() {
+  getName(): string {
     return this.name;
   }
 
@@ -68,7 +68,7 @@ export default class Notification {
    * @param {Object} body
    * @return {void}
    */
-  setBody(body) {
+  setBody(body): void {
     this.body = body;
   }
 
@@ -77,7 +77,7 @@ export default class Notification {
    *
    * @return {Object}
    */
-  getBody() {
+  getBody(): any {
     return this.body;
   }
 
@@ -87,7 +87,7 @@ export default class Notification {
    * @param {Object} type
    * @return {void}
    */
-  setType(type) {
+  setType(type: any) {
     this.type = type;
   }
 
@@ -96,7 +96,7 @@ export default class Notification {
    *
    * @return {Object}
    */
-  getType() {
+  getType(): any {
     return this.type;
   }
 
@@ -105,7 +105,7 @@ export default class Notification {
    *
    * @return {string}
    */
-  toString() {
+  toString(): string {
     let msg = `Notification Name: ${this.getName()}`;
     msg += `\nBody:${(this.body === null) ? 'null' : this.body.toString()}`;
     msg += `\nType:${(this.type === null) ? 'null' : this.type}`;

@@ -3,7 +3,14 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = undefined;
+
+var _Notification = require('../../patterns/observer/Notification');
+
+var _Notification2 = _interopRequireDefault(_Notification);
+
+var _Controller = require('../../core/Controller');
+
+var _Controller2 = _interopRequireDefault(_Controller);
 
 var _Model = require('../../core/Model');
 
@@ -13,13 +20,13 @@ var _View = require('../../core/View');
 
 var _View2 = _interopRequireDefault(_View);
 
-var _Notification = require('../../patterns/observer/Notification');
+var _Mediator = require('../../patterns/mediator/Mediator');
 
-var _Notification2 = _interopRequireDefault(_Notification);
+var _Mediator2 = _interopRequireDefault(_Mediator);
 
-var _Controller = require('../../core/Controller');
+var _Proxy = require('../../patterns/proxy/Proxy');
 
-var _Controller2 = _interopRequireDefault(_Controller);
+var _Proxy2 = _interopRequireDefault(_Proxy);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -257,14 +264,14 @@ var Facade = function () {
    * Register a command with the Controller by Notification name
    * @param {string} notificationName
    *  The name of the Notification to associate the command with
-   * @param {Function} commandClassRef
+   * @param {Function} CommandClassRef
    *  A reference ot the commands constructor.
    * @return {void}
    */
 
 
-  Facade.prototype.registerCommand = function registerCommand(notificationName, commandClassRef) {
-    this.controller.registerCommand(notificationName, commandClassRef);
+  Facade.prototype.registerCommand = function registerCommand(notificationName, CommandClassRef) {
+    this.controller.registerCommand(notificationName, CommandClassRef);
   };
 
   /**

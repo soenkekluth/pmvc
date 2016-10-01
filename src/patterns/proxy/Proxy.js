@@ -43,7 +43,7 @@ export default class Proxy extends Notifier {
    * @protected
    * @type String
    */
-  proxyName = null;
+  proxyName: string = null;
 
   /**
    * @ignore
@@ -52,10 +52,10 @@ export default class Proxy extends Notifier {
    * @protected
    * @type Object
    */
-  data = null;
+  data: Object = null;
 
 
-  constructor(proxyName, data) {
+  constructor(proxyName: string, data: Object) {
     super();
 
     this.proxyName = proxyName || Proxy.NAME;
@@ -66,7 +66,7 @@ export default class Proxy extends Notifier {
   }
 
 
-  static NAME = 'Proxy';
+  static NAME: string = 'Proxy';
 
 
   /**
@@ -74,7 +74,7 @@ export default class Proxy extends Notifier {
    *
    * @return {string}
    */
-  getProxyName() {
+  getProxyName(): string {
     return this.proxyName;
   }
 
@@ -84,7 +84,7 @@ export default class Proxy extends Notifier {
    * @param {Object} data
    * @return {void}
    */
-  setData(data) {
+  setData(data): void {
     this.data = data;
   }
 
@@ -93,7 +93,7 @@ export default class Proxy extends Notifier {
    *
    * @return {Object}
    */
-  getData() {
+  getData(): Object {
     return this.data;
   }
 
@@ -103,7 +103,7 @@ export default class Proxy extends Notifier {
    *
    * @return {void}
    */
-  onRegister() {
+  onRegister(): void {
     return;
   }
 
@@ -113,7 +113,7 @@ export default class Proxy extends Notifier {
    *
    * @return {void}
    */
-  onRemove() {
+  onRemove(): void {
     return;
   }
 }

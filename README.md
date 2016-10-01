@@ -1,32 +1,12 @@
-## [PureMVC](http://puremvc.github.com/) JavaScript MultiCore Framework
-PureMVC is a lightweight framework for creating applications based upon the classic [Model-View-Controller](http://en.wikipedia.org/wiki/Model-view-controller) design meta-pattern. This is a JavaScript port of the [AS3 reference implementation of the MultiCore Version](https://github.com/PureMVC/puremvc-as3-multicore-framework/wiki). It supports [modular programming](http://en.wikipedia.org/wiki/Modular_programming) through the use of [Multiton](http://en.wikipedia.org/wiki/Multiton) Core actors.
+PMVC (PureMVC)
+================
 
-This port contains additional functionality not found in other ports - lightweight JavaScript class-emulation. See puremvc.define() and puremvc.declare() in the documentation for more info. Use of this functionality is entirely optional; you may write classes using the class-emulation provided by other frameworks, if you prefer.
+## [pmvc (PureMVC)](http://puremvc.github.com/) JavaScript MultiCore Framework
+pmvc (PureMVC) is a lightweight framework for creating applications based upon the classic [Model-View-Controller](http://en.wikipedia.org/wiki/Model-view-controller) design meta-pattern.
 
-Unit Tests are included in this repository.
-
-* [API Docs](http://darkstar.puremvc.org/content_header.html?url=http://puremvc.org/pages/docs/JS/native-multicore/&desc=PureMVC%20API%20Docs:%20PureMVC%20MultiCore%20for%20JavaScript)
-* [Discussion](http://forums.puremvc.org/index.php?board=95.0)
-* [Overview Presentation](http://puremvc.tv/#P002)
-
-## Utilities
-* [Utility: State Machine](https://github.com/PureMVC/puremvc-js-util-statemachine/wiki)
-
-## Demos
-* [Demo: Employee Admin](https://github.com/PureMVC/puremvc-js-demo-employeeadmin/wiki)
-* [Demo: Reverse Text](https://github.com/PureMVC/puremvc-js-demo-reversetext/wiki)
-* [Demo: Box Splash](https://github.com/PureMVC/puremvc-js-demo-boxsplash/wiki)
-* [Demo: TodoMVC](https://github.com/PureMVC/puremvc-js-demo-todomvc/wiki)
-* [Demo: Lockable Door](https://github.com/PureMVC/puremvc-js-demo-lockabledoor/wiki)
-
-## Status
-Production - [Version 1.0.1](https://github.com/PureMVC/puremvc-js-multicore-framework/blob/master/VERSION)
-
-## Platforms / Technologies
-* [JavaScript](http://en.wikipedia.org/wiki/JavaScript)
 
 ## License
-* PureMVC MultiCore Framework for Javascript (Ported) - Copyright © 2011-2012 David Foley, Frédéric Saunier, Alain Duchesneau 
+* PureMVC MultiCore Framework for Javascript (Ported) - Copyright © 2016 Soenke Kluth 
 * PureMVC - Copyright © 2006-2012 Futurescale, Inc.
 * All rights reserved.
 

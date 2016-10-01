@@ -22,6 +22,7 @@ npm run start:example
 
 ## Dev
 ```sh
+npm i
 npm run start
 ```
 

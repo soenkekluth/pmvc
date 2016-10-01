@@ -5,6 +5,18 @@ PMVC (PureMVC)
 pmvc (PureMVC) is a lightweight framework for creating applications based upon the classic [Model-View-Controller](http://en.wikipedia.org/wiki/Model-view-controller) design meta-pattern.
 
 
+## Installation
+
+```sh
+npm install --save pmvc
+```
+
+## Usage
+[example](https://github.com/soenkekluth/pmvc/tree/master/examples/simple)
+```sh
+npm run start:example
+```
+
 ## License
 * PureMVC MultiCore Framework for Javascript (Ported) - Copyright © 2016 Soenke Kluth 
 * PureMVC - Copyright © 2006-2012 Futurescale, Inc.

@@ -1,6 +1,6 @@
 import Application, { ApplicationVO } from './app';
 
-const app = new Application(new ApplicationVO('test', 'wurst'));
+const app: Application = new Application(new ApplicationVO('test', 'wurst'));
 app.start();
 
 

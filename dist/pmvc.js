@@ -1,63 +1,106 @@
 'use strict';
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
 var _Observer = require('./patterns/observer/Observer');
 
-var _Observer2 = _interopRequireDefault(_Observer);
+Object.defineProperty(exports, 'Observer', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_Observer).default;
+  }
+});
 
 var _Notification = require('./patterns/observer/Notification');
 
-var _Notification2 = _interopRequireDefault(_Notification);
+Object.defineProperty(exports, 'Notification', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_Notification).default;
+  }
+});
 
 var _Facade = require('./patterns/facade/Facade');
 
-var _Facade2 = _interopRequireDefault(_Facade);
+Object.defineProperty(exports, 'Facade', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_Facade).default;
+  }
+});
 
 var _Notifier = require('./patterns/observer/Notifier');
 
-var _Notifier2 = _interopRequireDefault(_Notifier);
+Object.defineProperty(exports, 'Notifier', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_Notifier).default;
+  }
+});
 
 var _Model = require('./core/Model');
 
-var _Model2 = _interopRequireDefault(_Model);
+Object.defineProperty(exports, 'Model', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_Model).default;
+  }
+});
 
 var _View = require('./core/View');
 
-var _View2 = _interopRequireDefault(_View);
+Object.defineProperty(exports, 'View', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_View).default;
+  }
+});
 
 var _Controller = require('./core/Controller');
 
-var _Controller2 = _interopRequireDefault(_Controller);
+Object.defineProperty(exports, 'Controller', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_Controller).default;
+  }
+});
 
 var _MacroCommand = require('./patterns/command/MacroCommand');
 
-var _MacroCommand2 = _interopRequireDefault(_MacroCommand);
+Object.defineProperty(exports, 'MacroCommand', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_MacroCommand).default;
+  }
+});
 
 var _SimpleCommand = require('./patterns/command/SimpleCommand');
 
-var _SimpleCommand2 = _interopRequireDefault(_SimpleCommand);
+Object.defineProperty(exports, 'SimpleCommand', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_SimpleCommand).default;
+  }
+});
 
 var _Mediator = require('./patterns/mediator/Mediator');
 
-var _Mediator2 = _interopRequireDefault(_Mediator);
+Object.defineProperty(exports, 'Mediator', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_Mediator).default;
+  }
+});
 
 var _Proxy = require('./patterns/proxy/Proxy');
 
-var _Proxy2 = _interopRequireDefault(_Proxy);
+Object.defineProperty(exports, 'Proxy', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_Proxy).default;
+  }
+});
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var pmvc = {
-  Model: _Model2.default,
-  View: _View2.default,
-  Controller: _Controller2.default,
-  MacroCommand: _MacroCommand2.default,
-  SimpleCommand: _SimpleCommand2.default,
-  Facade: _Facade2.default,
-  Mediator: _Mediator2.default,
-  Notification: _Notification2.default,
-  Notifier: _Notifier2.default,
-  Observer: _Observer2.default,
-  Proxy: _Proxy2.default
-};
-
-module.exports = pmvc;

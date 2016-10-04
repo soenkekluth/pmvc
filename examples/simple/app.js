@@ -16,7 +16,6 @@ export default class Application {
   }
 
   start() {
-    // this.facade = 'hello';
     this.facade.startup(this);
   }
 

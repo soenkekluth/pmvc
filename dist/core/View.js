@@ -92,14 +92,14 @@ var View = function () {
     }
   };
 
-  View.prototype.registerMediator = function registerMediator(mediator) {
-    if (this.mediatorMap[mediator.getMediatorName()]) {
+  View.prototype.addMediator = function addMediator(mediator) {
+    if (this.mediatorMap[mediator.getName()]) {
       return;
     }
 
     mediator.initializeNotifier(this.multitonKey);
 
-    this.mediatorMap[mediator.getMediatorName()] = mediator;
+    this.mediatorMap[mediator.getName()] = mediator;
 
     var interests = mediator.listNotificationInterests();
 
@@ -113,12 +113,12 @@ var View = function () {
     mediator.onRegister();
   };
 
-  View.prototype.retrieveMediator = function retrieveMediator(mediatorName) {
+  View.prototype.getMediator = function getMediator(mediatorName) {
     return this.mediatorMap[mediatorName];
   };
 
   View.prototype.removeMediator = function removeMediator(mediatorName) {
-    var mediator = this.retrieveMediator(mediatorName);
+    var mediator = this.getMediator(mediatorName);
     if (mediator) {
       var interests = mediator.listNotificationInterests();
       for (var i = 0; i < interests.length; i++) {
@@ -134,7 +134,7 @@ var View = function () {
   };
 
   View.prototype.hasMediator = function hasMediator(mediatorName) {
-    return !!this.retrieveMediator(mediatorName);
+    return !!this.getMediator(mediatorName);
   };
 
   return View;

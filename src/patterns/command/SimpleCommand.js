@@ -13,8 +13,8 @@
  * {@link puremvc.Notification Notification}
  *
  * Take a look at
- * {@link puremvc.Facade#registerCommand Facade's registerCommand}
- * or {@link puremvc.Controller#registerCommand Controllers registerCommand}
+ * {@link puremvc.Facade#addCommand Facade's addCommand}
+ * or {@link puremvc.Controller#addCommand Controllers addCommand}
  * methods to see how to add commands to your application.
  *
  * @constructor

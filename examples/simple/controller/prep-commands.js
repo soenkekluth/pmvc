@@ -8,7 +8,7 @@ export class ModelPrepCommand extends SimpleCommand {
     console.log('ModelPrepCommand execute()');
     const app = note.getBody();
     const appProxy = new ApplicationProxy(app.data);
-    this.facade.registerProxy(appProxy);
+    this.facade.addProxy(appProxy);
   }
 }
 
@@ -19,6 +19,6 @@ export class ViewPrepCommand extends SimpleCommand {
     console.log('ViewPrepCommand execute()');
     const appView = new ApplicationView();
     const appMediator = new ApplicationMediator(ApplicationMediator.NAME, appView);
-    this.facade.registerMediator(appMediator);
+    this.facade.addMediator(appMediator);
   }
 }

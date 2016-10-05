@@ -24,6 +24,10 @@ var Notifier = function () {
     }
   };
 
+  Notifier.prototype.send = function send(notificationName, body, type) {
+    this.sendNotification(notificationName, body, type);
+  };
+
   Notifier.prototype.initializeNotifier = function initializeNotifier(key) {
     this.multitonKey = key;
     this.facade = this.getFacade();

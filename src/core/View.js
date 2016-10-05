@@ -252,14 +252,14 @@ export default class View {
    * @param {puremvc.Mediator}
    *  a reference to the Mediator instance
    */
-  registerMediator(mediator: Mediator): void {
-    if (this.mediatorMap[mediator.getMediatorName()]) {
+  addMediator(mediator: Mediator): void {
+    if (this.mediatorMap[mediator.getName()]) {
       return;
     }
 
     mediator.initializeNotifier(this.multitonKey);
     // register the mediator for retrieval by name
-    this.mediatorMap[mediator.getMediatorName()] = mediator;
+    this.mediatorMap[mediator.getName()] = mediator;
 
     // get notification interests if any
     const interests: Array = mediator.listNotificationInterests();
@@ -284,7 +284,7 @@ export default class View {
    * @return {puremvc.Mediator}
    *  The Mediator instance previously registered with the given mediatorName
    */
-  retrieveMediator(mediatorName: string): Mediator {
+  getMediator(mediatorName: string): Mediator {
     return this.mediatorMap[mediatorName];
   }
 
@@ -297,7 +297,7 @@ export default class View {
    *  The Mediator that was removed from the View
    */
   removeMediator(mediatorName: string): Mediator {
-    const mediator: Mediator = this.retrieveMediator(mediatorName);
+    const mediator: Mediator = this.getMediator(mediatorName);
     if (mediator) {
       // for every notification the mediator is interested in...
       const interests: Array = mediator.listNotificationInterests();
@@ -325,7 +325,7 @@ export default class View {
    *  Whether a Mediator is registered with the given mediatorname
    */
   hasMediator(mediatorName: string): boolean {
-    return !!this.retrieveMediator(mediatorName);
+    return !!this.getMediator(mediatorName);
   }
 
 

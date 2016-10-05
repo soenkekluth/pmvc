@@ -91,8 +91,8 @@ var Facade = function () {
     this.view = _View2.default.getInstance(this.multitonKey);
   };
 
-  Facade.prototype.registerCommand = function registerCommand(notificationName, CommandClassRef) {
-    this.controller.registerCommand(notificationName, CommandClassRef);
+  Facade.prototype.addCommand = function addCommand(notificationName, CommandClassRef) {
+    this.controller.addCommand(notificationName, CommandClassRef);
   };
 
   Facade.prototype.removeCommand = function removeCommand(notificationName) {
@@ -103,12 +103,12 @@ var Facade = function () {
     return this.controller.hasCommand(notificationName);
   };
 
-  Facade.prototype.registerProxy = function registerProxy(proxy) {
-    this.model.registerProxy(proxy);
+  Facade.prototype.addProxy = function addProxy(proxy) {
+    this.model.addProxy(proxy);
   };
 
-  Facade.prototype.retrieveProxy = function retrieveProxy(proxyName) {
-    return this.model.retrieveProxy(proxyName);
+  Facade.prototype.getProxy = function getProxy(proxyName) {
+    return this.model.getProxy(proxyName);
   };
 
   Facade.prototype.removeProxy = function removeProxy(proxyName) {
@@ -124,14 +124,14 @@ var Facade = function () {
     return this.model.hasProxy(proxyName);
   };
 
-  Facade.prototype.registerMediator = function registerMediator(mediator) {
+  Facade.prototype.addMediator = function addMediator(mediator) {
     if (this.view) {
-      this.view.registerMediator(mediator);
+      this.view.addMediator(mediator);
     }
   };
 
-  Facade.prototype.retrieveMediator = function retrieveMediator(mediatorName) {
-    return this.view.retrieveMediator(mediatorName);
+  Facade.prototype.getMediator = function getMediator(mediatorName) {
+    return this.view.getMediator(mediatorName);
   };
 
   Facade.prototype.removeMediator = function removeMediator(mediatorName) {
@@ -150,6 +150,10 @@ var Facade = function () {
   Facade.prototype.sendNotification = function sendNotification(notificationName, body, type) {
     var n = new _Notification2.default(notificationName, body, type);
     this.notifyObservers(n);
+  };
+
+  Facade.prototype.send = function send(notificationName, body, type) {
+    this.sendNotification(notificationName, body, type);
   };
 
   Facade.prototype.notifyObservers = function notifyObservers(notification) {

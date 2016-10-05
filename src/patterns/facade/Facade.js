@@ -138,7 +138,7 @@ export default class Facade {
    *     MyinitializeController ()
    *     {
    *         initializeController.call(this);
-   *         this.registerCommand(AppConstants.A_NOTE_NAME, ABespokeCommand)
+   *         this.addCommand(AppConstants.A_NOTE_NAME, ABespokeCommand)
    *     }
    *
    * @protected
@@ -170,7 +170,7 @@ export default class Facade {
    * Proxys.
    *
    * Note: This method is *rarely* overridden; in practice you are more
-   * likely to use a command to create and registerProxys with the Model>,
+   * likely to use a command to create and addProxys with the Model>,
    * since Proxys with mutable data will likely
    * need to send Notifications and thus will likely want to fetch a reference to
    * the Facade during their construction.
@@ -205,7 +205,7 @@ export default class Facade {
    *     MyinitializeView ()
    *     {
    *         initializeView.call(this);
-   *         this.registerMediator(new MyMediator());
+   *         this.addMediator(new MyMediator());
    *     };
    *
    * Note: This method is *rarely* overridden; in practice you are more
@@ -231,8 +231,8 @@ export default class Facade {
    *  A reference ot the commands constructor.
    * @return {void}
    */
-  registerCommand(notificationName: string, CommandClassRef: Class): void {
-    this.controller.registerCommand(notificationName, CommandClassRef: Class);
+  addCommand(notificationName: string, CommandClassRef: Class): void {
+    this.controller.addCommand(notificationName, CommandClassRef: Class);
   }
 
   /**
@@ -259,16 +259,17 @@ export default class Facade {
   }
 
   /**
-   * Register a Proxy with the {@link puremvc.Model#registerProxy Model}
+   * Register a Proxy with the {@link puremvc.Model#addProxy Model}
    * by name.
    *
    * @param {puremvc.Proxy} proxy
    *  The Proxy instance to be registered with the Model.
    * @return {void}
    */
-  registerProxy(proxy: Proxy): void {
-    this.model.registerProxy(proxy);
+  addProxy(proxy: Proxy): void {
+    this.model.addProxy(proxy);
   }
+
 
   /**
    * Retrieve a Proxy from the Model
@@ -276,8 +277,9 @@ export default class Facade {
    * @param {string} proxyName
    * @return {puremvc.Proxy}
    */
-  retrieveProxy(proxyName: string): Proxy {
-    return this.model.retrieveProxy(proxyName);
+
+  getProxy(proxyName: string): Proxy {
+    return this.model.getProxy(proxyName);
   }
 
   /**
@@ -314,9 +316,9 @@ export default class Facade {
    *  A reference to the Mediator to register
    * @return {void}
    */
-  registerMediator(mediator): void {
+  addMediator(mediator): void {
     if (this.view) {
-      this.view.registerMediator(mediator);
+      this.view.addMediator(mediator);
     }
   }
 
@@ -328,9 +330,10 @@ export default class Facade {
    * @return {puremvc.Mediator}
    *  The retrieved Mediator
    */
-  retrieveMediator(mediatorName): Mediator {
-    return this.view.retrieveMediator(mediatorName);
+  getMediator(mediatorName): Mediator {
+    return this.view.getMediator(mediatorName);
   }
+
 
   /**
    * Remove a Mediator from the View.
@@ -380,6 +383,11 @@ export default class Facade {
     const n = new Notification(notificationName, body, type);
     this.notifyObservers(n);
   }
+
+  send(notificationName, body, type): void {
+    this.sendNotification(notificationName, body, type);
+  }
+
 
   /**
    * Notify {@link puremvc.Observer Observer}s

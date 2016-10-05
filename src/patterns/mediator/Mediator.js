@@ -35,6 +35,7 @@
  *  The Mediators {@link #setViewComponent viewComponent}.
  */
 
+import Proxy from '../proxy/Proxy';
 import Notifier from '../observer/Notifier';
 
 export default class Mediator extends Notifier {
@@ -65,7 +66,7 @@ export default class Mediator extends Notifier {
    * @return {string}
    *  The Mediator name
    */
-  getMediatorName(): string {
+  getName(): string {
     return this.mediatorName;
   }
 
@@ -114,8 +115,22 @@ export default class Mediator extends Notifier {
 
 
   get view() {
-    return this.viewComponent;
+    return this.getViewComponent();
   }
+
+  set view(viewComponent) {
+    this.setViewComponent(viewComponent);
+  }
+
+
+  getProxy(name: string): Proxy {
+    return this.facade.getProxy(name);
+  }
+
+  addProxy(proxy: Proxy): void {
+    this.facade.addProxy(proxy);
+  }
+
 
   /**
    * List the Notification names this Mediator is interested

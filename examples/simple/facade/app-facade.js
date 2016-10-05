@@ -35,8 +35,8 @@ export default class ApplicationFacade extends Facade {
 
   initializeController() {
     super.initializeController();
-    this.registerCommand(NotificationNames.STARTUP, StartupCommand);
-    this.registerCommand(NotificationNames.TEST, TestCommand);
-    // this.registerCommand( NotificationNames.STARTUP_COMPLETE, StartupCompleteCommand);
+    this.addCommand(NotificationNames.STARTUP, StartupCommand);
+    this.addCommand(NotificationNames.TEST, TestCommand);
+    // this.addCommand( NotificationNames.STARTUP_COMPLETE, StartupCompleteCommand);
   }
 }

@@ -208,7 +208,7 @@ export default class Controller {
    *  a command constructor
    * @return {void}
    */
-  registerCommand(notificationName: string, CommandClassRef: Class): void {
+  addCommand(notificationName: string, CommandClassRef: Class): void {
     if (!this.commandMap[notificationName]) {
       this.view.registerObserver(notificationName, new Observer(this.executeCommand, this));
     }

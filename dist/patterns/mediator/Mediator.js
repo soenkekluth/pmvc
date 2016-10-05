@@ -6,6 +6,10 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+var _Proxy = require('../proxy/Proxy');
+
+var _Proxy2 = _interopRequireDefault(_Proxy);
+
 var _Notifier2 = require('../observer/Notifier');
 
 var _Notifier3 = _interopRequireDefault(_Notifier2);
@@ -31,7 +35,7 @@ var Mediator = function (_Notifier) {
     return _this;
   }
 
-  Mediator.prototype.getMediatorName = function getMediatorName() {
+  Mediator.prototype.getName = function getName() {
     return this.mediatorName;
   };
 
@@ -41,6 +45,14 @@ var Mediator = function (_Notifier) {
 
   Mediator.prototype.getViewComponent = function getViewComponent() {
     return this.viewComponent;
+  };
+
+  Mediator.prototype.getProxy = function getProxy(name) {
+    return this.facade.getProxy(name);
+  };
+
+  Mediator.prototype.addProxy = function addProxy(proxy) {
+    this.facade.addProxy(proxy);
   };
 
   Mediator.prototype.listNotificationInterests = function listNotificationInterests() {
@@ -56,7 +68,10 @@ var Mediator = function (_Notifier) {
   _createClass(Mediator, [{
     key: 'view',
     get: function get() {
-      return this.viewComponent;
+      return this.getViewComponent();
+    },
+    set: function set(viewComponent) {
+      this.setViewComponent(viewComponent);
     }
   }]);
 

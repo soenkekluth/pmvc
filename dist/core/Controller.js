@@ -67,7 +67,7 @@ var Controller = function () {
     commandInstance.execute(note);
   };
 
-  Controller.prototype.registerCommand = function registerCommand(notificationName, CommandClassRef) {
+  Controller.prototype.addCommand = function addCommand(notificationName, CommandClassRef) {
     if (!this.commandMap[notificationName]) {
       this.view.registerObserver(notificationName, new _Observer2.default(this.executeCommand, this));
     }

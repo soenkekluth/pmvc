@@ -118,9 +118,9 @@ export default class Model {
    * Register a Proxy with the Model
    * @param {puremvc.Proxy}
    */
-  registerProxy(proxy: Proxy): void {
+  addProxy(proxy: Proxy): void {
     proxy.initializeNotifier(this.multitonKey);
-    this.proxyMap[proxy.getProxyName()] = proxy;
+    this.proxyMap[proxy.getName()] = proxy;
     proxy.onRegister();
   }
 
@@ -131,7 +131,7 @@ export default class Model {
    * @return {puremvc.Proxy}
    *  The Proxy instance previously registered with the provided proxyName
    */
-  retrieveProxy(proxyName: string): Proxy {
+  getProxy(proxyName: string): Proxy {
     return this.proxyMap[proxyName];
   }
 

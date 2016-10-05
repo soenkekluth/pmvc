@@ -82,6 +82,11 @@ export default class Notifier {
   }
 
 
+  send(notificationName: string, body: any, type: any): void {
+    this.sendNotification(notificationName, body, type);
+  }
+
+
   /**
    * Initialize this Notifier instance.
    *

@@ -42,13 +42,13 @@ var Model = function () {
     return Model.instanceMap[key];
   };
 
-  Model.prototype.registerProxy = function registerProxy(proxy) {
+  Model.prototype.addProxy = function addProxy(proxy) {
     proxy.initializeNotifier(this.multitonKey);
-    this.proxyMap[proxy.getProxyName()] = proxy;
+    this.proxyMap[proxy.getName()] = proxy;
     proxy.onRegister();
   };
 
-  Model.prototype.retrieveProxy = function retrieveProxy(proxyName) {
+  Model.prototype.getProxy = function getProxy(proxyName) {
     return this.proxyMap[proxyName];
   };
 

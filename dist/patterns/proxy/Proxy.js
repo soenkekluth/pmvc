@@ -29,14 +29,11 @@ var Proxy = function (_Notifier) {
 
 
     _this.proxyName = proxyName || Proxy.NAME;
-
-    if (data) {
-      _this.setData(data);
-    }
+    _this.data = data;
     return _this;
   }
 
-  Proxy.prototype.getProxyName = function getProxyName() {
+  Proxy.prototype.getName = function getName() {
     return this.proxyName;
   };
 

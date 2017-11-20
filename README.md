@@ -1,6 +1,8 @@
 PMVC (PureMVC)
 ================
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/soenkekluth/pmvc.svg)](https://greenkeeper.io/)
+
 ## [pmvc (PureMVC)](http://puremvc.github.com/) JavaScript MultiCore Framework
 pmvc (PureMVC) is a lightweight framework for creating applications based upon the classic [Model-View-Controller](http://en.wikipedia.org/wiki/Model-view-controller) design meta-pattern.
 
